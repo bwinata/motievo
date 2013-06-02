@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="<? echo base_url() . 'css/fdn/foundation.css'; ?>" />
+<script src="<? echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
+
+<script>
+	$(document).ready(function () {
+		document.body.style.background = "url('<? echo base_url() . 'images/bondi.jpg'; ?>')";
+		document.body.style.backgroundSize = 'cover';
+		document.body.style.backgroundAttachment = 'fixed';
+	});
+</script>
+
 <style type="text/css">
 	body {
 		height: 100%;
@@ -17,11 +35,11 @@
 		position:relative; top:25px;
 	}
 	#sign_up {
-		height: 475px;
+		height: auto;
 		width: 400px;
 	}
 	#sign_in {
-		height: 325px;
+		height: auto;
 		width: 400px;
 	}	
 	.details {
@@ -43,6 +61,8 @@
 			<form>
 				<span style="color:white;">Full Name</span><br /><br />
 				<input type="text" id="full_name_info" name="full_name" />
+				<span style="color:white;">Username</span><br /><br />
+				<input type="text" id="username_info" name="username" />				
 				<span style="color:white;"`>Email</span><br /><br />
 				<input type="text" id="email_info" name="email" />
 				<span style="color:white;">Password</span><br /><br />

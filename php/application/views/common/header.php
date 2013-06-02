@@ -2,9 +2,12 @@
 <html lang="en">
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="<? echo base_url() . 'css/fdn/foundation.css'; ?>" />
+<script src="<? echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
+
 <style type="text/css">
 	a:hover {
 		text-decoration: underline;
@@ -23,9 +26,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 	<title><?php echo $page_title; ?></title>
-
-	<link rel="stylesheet" href="<? echo base_url() . 'css/fdn/foundation.css'; ?>" />
-    <script src="<? echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
     
     <nav class="top-bar">
     	<ul class="title-area">
@@ -35,6 +35,14 @@
     	</ul>
     	<section class="top-bar-section">
     		<ul class="right">
+    			<li class="name"><span style="color: white; padding: 20px;"><b>Find a Friend</b></span></li>
+    			<li class="name">    				
+    				<input type="text" id="search_friend" name="search_friend_name" placeholder="Username or Email" maxlength="40">
+    			</li>
+    			<li class="divider hide-for-small"></li>    			
+    			<li class="name">
+    				<input type="submit" id="search_friend_btn" class="small default button" value="Find" />
+    			</li>
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="<?php echo site_url('dashboard/me'); ?>">Dashboard</a></li>
     			<li class="divider hide-for-small"></li>

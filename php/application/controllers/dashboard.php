@@ -9,6 +9,16 @@ class Dashboard extends CI_Controller
 		$this->load->view('dashboard/my_dashboard');
 		$this->load->view('common/footer');
 	}
+	
+	public function friend () 
+	{
+		$data['page_title'] = 'Jessica Tan';
+		$this->load->view('common/header', $data);
+		$this->load->view('dashboard/friend_dashboard');
+		$this->load->view('common/footer');		
+	}
+	
+	
 }
 
 ?>

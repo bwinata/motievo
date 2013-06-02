@@ -22,10 +22,6 @@
 	.photo_caption {
 		font-size: 14px;
 	}
-	.inline_separator {
-		width: 20px;
-		height: 1px;
-	}
 </style>
 
 <script>
@@ -39,23 +35,19 @@
 <body>
 	<div id="greeting" class="row">
 		<div class="large-7 columns">
-			<h3 style="color: white;">Barry Winata</h3>
+			<h3 style="color: white;">Jessica Tan</h3>
 		</div>
 		<div class="large-4 columns">
     		<ul class="button-group right">
-    			<li class="name"><h3><a href="<?php echo site_url('event/organize'); ?>" style="color: white;" >Friends</a></h3></li>
-    			<li class="name"><div class="inline_separator"></div></li>    			
-    			<li class="name"><h3 style="color: white;">|</h3></li>    				
-    			<li class="name"><div class="inline_separator"></div></li>
-    			<li class="name"><h3><a href="<?php echo site_url('event/organize'); ?>" style="color: white;" >Create</a></h3></li>
+    			<li class="name"><h3><a href="<?php echo site_url('event/organize'); ?>" style="color: white;" >+</a></h3></li>
     		</ul>
-		</div>
+		</div>		
 	</div>
 	<br />
 	<div class="row">
 		<div id="past_happenings" class="large-7 columns" style="margin-left: -15px;">
 			<div class="container">
-				<h4>My Happenings</h4>
+				<h4>Our Happenings</h4>
 			</div>
 			<br />
 			<div id="010613_1" class="container">
@@ -91,11 +83,10 @@
 			</div>				
 		</div>
 		<div id="upcoming_happenings" class="large-5 columns container">
-			<h4>Upcoming Happenings</h4>
+			<h4>Upcoming Happenings with Jessica</h4>
 			<hr></hr>
 			<span style="font-size:14px;">6 June 2013</span>
-			<h6 class="title_upcoming">Having dinner with Jess</h6>
-			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br /><br />
+			<h6 class="title_upcoming">Having dinner</h6>
 			<h6 class="subheader">Darling Harbour</h6>
 			<hr></hr>
 		</div>			

@@ -75,6 +75,8 @@
 				<hr></hr>				
 				<h6 class="subheader"><b>Full Name</b></h6>
 				<input style="width:400px; border: solid;" type="text" id="full_name_settings" name="full_name_settings_name" value="Barry Winata" />
+				<h6 class="subheader"><b>Username</b></h6>
+				<input style="width:400px; border: solid;" type="text" id="username_settings" name="username_settings_name" value="bwinata" />				
 				<hr></hr>
 				<h6 class="subheader"><b>Email</b></h6>
 				<input style="width:400px; border: solid;" type="text" id="email_settings" name="email_settings_name" value="barry.winata@yahoo.com" />
