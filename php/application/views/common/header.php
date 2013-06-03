@@ -5,8 +5,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
-<link rel="stylesheet" href="<? echo base_url() . 'css/fdn/foundation.css'; ?>" />
-<script src="<? echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url() . 'css/fdn/foundation.css'; ?>" />
+<script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
 
 <style type="text/css">
 	a:hover {
@@ -16,7 +16,7 @@
 
 <script>
 	$(document).ready(function () {
-		document.body.style.background = "url('<? echo base_url() . 'images/bondi.jpg'; ?>')";
+		document.body.style.background = "url('<?php echo base_url() . 'images/bondi.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
 	});
