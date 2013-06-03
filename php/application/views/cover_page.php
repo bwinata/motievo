@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width" />
 	<title>Get a life!</title>
 	
-	<link rel="stylesheet" href="<? echo base_url() . 'css/fdn/foundation.css'; ?>" />
-    <script src="<? echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
+	<link rel="stylesheet" href="<?php echo base_url() . 'css/fdn/foundation.css'; ?>" />
+    <script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
 </head>
 
 <style type="text/css">
