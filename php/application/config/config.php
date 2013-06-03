@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://cathup-kreeos.rhcloud.com';
+$config['base_url']	= 'http://catchup-kreeos.rhcloud.com';
 
 /*
 |--------------------------------------------------------------------------
