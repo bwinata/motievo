@@ -26,7 +26,7 @@
 <body>
 	<div id="event_heading" class="row">
 		<div class="large-12 columns">
-			<h2 style="color: white;">Organize a happening</h2>
+			<h3 style="color: white;">Organize a happening</h3>
 		</div>
 	</div>
 	<div class="row">
