@@ -52,17 +52,17 @@
 <body>
 	<div id="settings_header" class="row">
 		<div class="large-12 columns">
-			<h2 style="color: white;">My Settings</h2>
+			<h4 style="color: white;">My Settings</h4>
 		</div>
 	</div>
 	<div id="settings_options" class="row">
-		<div id="personal_tab" class="label"><a href="#settings_panel_personal" style="color: white;"><h4 style="color: white;">Personal</h4></a></div>
-		<div id="dashboard_tab" class="label"><a href="#settings_panel_dashboard" style="color: white;"><h4 style="color: white;">Dashboard</h4></a></div>
-		<div id="privacy_tab" class="label"><a href="#privacy" style="color: white;"><h4 style="color: white;">Privacy</h4></a></div>
+		<div id="personal_tab" class="label"><a href="#settings_panel_personal" style="color: white;"><h5 style="color: white;">Personal</h5></a></div>
+		<div id="dashboard_tab" class="label"><a href="#settings_panel_dashboard" style="color: white;"><h5 style="color: white;">Dashboard</h5></a></div>
+		<div id="privacy_tab" class="label"><a href="#privacy" style="color: white;"><h5 style="color: white;">Privacy</h5></a></div>
 	</div>
 	<div class="row">
 		<div style="display: block;" id="settings_panel_personal" class="large-7 columns container">
-			<h3>Personal</h3>
+			<h4>Personal</h4>
 			<hr></hr>
 			<form>
 				<h6 class="subheader"><b>Display Picture</b></h6>
@@ -96,11 +96,13 @@
 			</form>
 		</div>
 		<div style="display: none;" id="settings_panel_dashboard" class="large-7 columns container">
-			<h3>Dashboard</h3>
+			<h4>Dashboard</h4>
 			<hr></hr>
 			<form>
 				<h6 class="subheader"><b>Wallpaper</b></h6>
-				<div id="wallpaper"></div><br />
+				<div id="wallpaper">
+					<img src="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" />
+				</div><br />
 				<input type="submit" class="small success button" id="wallpaper_btn" value="Change Wallpaper" />
 				<hr></hr>				
 			</form>				

@@ -20,7 +20,9 @@
 		width: 400px;
 		background-color: #000;
 		background: rgba(0, 0, 0, 0.9);
-		position:relative;top:150px;
+		position:fixed;top:50%;left:50%;
+		margin-top: -150px;
+		margin-left: -200px;
 		border-radius: 5px;
 	}
 </style>

@@ -18,6 +18,13 @@ class Dashboard extends CI_Controller
 		$this->load->view('common/footer');		
 	}
 	
+	public function contacts ()
+	{
+		$data['page_title'] = 'My Friends';
+		$this->load->view('common/header', $data);
+		$this->load->view('dashboard/friends_list');
+		$this->load->view('common/footer');
+	}
 	
 }
 

@@ -5,7 +5,7 @@
 		border-radius: 5px;
 	}
 	#past_happenings, #upcoming_happenings {
-		position: relative;top: 25px;
+		position: relative;top: 20px;
 	}
 	.other_party {
 		font-size: 14px;
@@ -43,7 +43,7 @@
 		</div>
 		<div class="large-4 columns">
     		<ul class="button-group right">
-    			<li class="name"><h3><a href="<?php echo site_url('event/organize'); ?>" style="color: white;" >Friends</a></h3></li>
+    			<li class="name"><h3><a href="<?php echo site_url('dashboard/contacts'); ?>" style="color: white;" >Friends</a></h3></li>
     			<li class="name"><div class="inline_separator"></div></li>    			
     			<li class="name"><h3 style="color: white;">|</h3></li>    				
     			<li class="name"><div class="inline_separator"></div></li>
@@ -55,7 +55,7 @@
 	<div class="row">
 		<div id="past_happenings" class="large-7 columns" style="margin-left: -15px;">
 			<div class="container">
-				<h4>My Happenings</h4>
+				<h5>My Happenings</h5>
 			</div>
 			<br />
 			<div id="010613_1" class="container">
@@ -64,7 +64,7 @@
 				<h6 class="subheader">Surry Hills</h6>
 				<iframe width="525" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 				<hr></hr>
-				<a href="#" class="img" id="<? echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" data-reveal-id="myModal"><img src="<? echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" /></a>
+				<a href="#" class="img" id="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" data-reveal-id="myModal"><img src="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" /></a>
 				<span class="photo_caption">Checking out the sights</span>
 				<hr></hr>
 				<p class="my_posts">
@@ -80,7 +80,7 @@
 				<h6 class="subheader">Surry Hills</h6>
 				<iframe width="525" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 				<hr></hr>
-				<a href="#" class="img" id="<? echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" data-reveal-id="myModal"><img src="<? echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" /></a>
+				<a href="#" class="img" id="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" data-reveal-id="myModal"><img src="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" /></a>
 				<span class="photo_caption">Checking out the sights</span>
 				<hr></hr>
 				<p class="my_posts">
@@ -90,13 +90,13 @@
 				<br /><br />
 			</div>				
 		</div>
-		<div id="upcoming_happenings" class="large-5 columns container">
-			<h4>Upcoming Happenings</h4>
+		<div id="upcoming_happenings" class="large-4 columns container" style="width: 400px;">
+			<h5>Upcoming Happenings</h5>
 			<hr></hr>
-			<span style="font-size:14px;">6 June 2013</span>
-			<h6 class="title_upcoming">Having dinner with Jess</h6>
-			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br /><br />
-			<h6 class="subheader">Darling Harbour</h6>
+			<span style="font-size:12px;"><b>6 June 2013</b></span><br /><br />
+			<span style="font-size: 15px;" class="title_upcoming">Having dinner</span>
+			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br />
+			<h6 class="subheader"><b>@ Darling Harbour</b></h6>
 			<hr></hr>
 		</div>			
 	</div>
@@ -107,13 +107,13 @@
 		
 	<script>
 	      document.write('<script src=' +
-	      ('__proto__' in {} ? '<? echo base_url() . 'js/vendor/zepto'; ?>' : '<? echo base_url() . 'js/vendor/jquery'; ?>') +
+	      ('__proto__' in {} ? '<?php echo base_url() . 'js/vendor/zepto'; ?>' : '<?php echo base_url() . 'js/vendor/jquery'; ?>') +
 	      '.js><\/script>')
 	</script>
 	
-    <script src="<? echo base_url() . 'js/fdn/foundation.js'; ?>"></script>  
-    <script src="<? echo base_url() . 'js/fdn/foundation.magellan.js'; ?>"></script>
-    <script src="<? echo base_url() . 'js/fdn/foundation.reveal.js'; ?>"></script>
+    <script src="<?php echo base_url() . 'js/fdn/foundation.js'; ?>"></script>  
+    <script src="<?php echo base_url() . 'js/fdn/foundation.magellan.js'; ?>"></script>
+    <script src="<?php echo base_url() . 'js/fdn/foundation.reveal.js'; ?>"></script>
 	    
     <script>
         $(document).foundation();
