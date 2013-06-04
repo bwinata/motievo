@@ -10,19 +10,13 @@
 
 <script>
 	$(document).ready(function () {
-		document.body.style.background = "url('<?php echo base_url() . 'images/bondi.jpg'; ?>')";
+		document.body.style.background = "url('<?php echo base_url() . 'images/blurred_lines.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
 	});
 </script>
 
 <style type="text/css">
-	body {
-		height: 100%;
-		background: url(<?php echo base_url() . 'images/bondi.jpg'; ?>);
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
 	#interest_box {
 		height: 300px;
 		width: 400px;

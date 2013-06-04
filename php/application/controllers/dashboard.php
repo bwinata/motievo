@@ -4,7 +4,7 @@ class Dashboard extends CI_Controller
 {
 	public function me ()
 	{
-		$data['page_title'] = 'Barry Winata';
+		$data['page_title'] = 'Barry Winata | Dashboard';
 		$this->load->view('common/header', $data);
 		$this->load->view('dashboard/my_dashboard');
 		$this->load->view('common/footer');
