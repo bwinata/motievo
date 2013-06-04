@@ -5,7 +5,7 @@
 		border-radius: 5px;
 	}
 	#past_happenings, #upcoming_happenings {
-		position: relative;top: 25px;
+		position: relative;top: 20px;
 	}
 	.other_party {
 		font-size: 14px;
@@ -43,7 +43,7 @@
 		</div>
 		<div class="large-4 columns">
     		<ul class="button-group right">
-    			<li class="name"><h3><a href="<?php echo site_url('event/organize'); ?>" style="color: white;" >Friends</a></h3></li>
+    			<li class="name"><h3><a href="<?php echo site_url('dashboard/contacts'); ?>" style="color: white;" >Friends</a></h3></li>
     			<li class="name"><div class="inline_separator"></div></li>    			
     			<li class="name"><h3 style="color: white;">|</h3></li>    				
     			<li class="name"><div class="inline_separator"></div></li>
@@ -55,7 +55,7 @@
 	<div class="row">
 		<div id="past_happenings" class="large-7 columns" style="margin-left: -15px;">
 			<div class="container">
-				<h4>My Happenings</h4>
+				<h5>My Happenings</h5>
 			</div>
 			<br />
 			<div id="010613_1" class="container">
@@ -90,13 +90,13 @@
 				<br /><br />
 			</div>				
 		</div>
-		<div id="upcoming_happenings" class="large-5 columns container">
-			<h4>Upcoming Happenings</h4>
+		<div id="upcoming_happenings" class="large-4 columns container" style="width: 400px;">
+			<h5>Upcoming Happenings</h5>
 			<hr></hr>
-			<span style="font-size:14px;">6 June 2013</span>
-			<h6 class="title_upcoming">Having dinner with Jess</h6>
-			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br /><br />
-			<h6 class="subheader">Darling Harbour</h6>
+			<span style="font-size:12px;"><b>6 June 2013</b></span><br /><br />
+			<span style="font-size: 15px;" class="title_upcoming">Having dinner</span>
+			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br />
+			<h6 class="subheader"><b>@ Darling Harbour</b></h6>
 			<hr></hr>
 		</div>			
 	</div>

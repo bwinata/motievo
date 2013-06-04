@@ -51,13 +51,30 @@
 			<ul class="ul_friends large-12 columns">
 				<li class="friend_container large-12 columns">
 					<div class="large-2 columns"><div class="friend_profile_pic"></div></div>
-					<div class="large-10 columns">
+					<div class="large-7 columns">
 						<div class="friend_name">
 							<span><a href="#"><b>Jessica Tan</b></a></span>
 						</div>
 						<div class="friend_greeting">
 							<p>Hello, I'm, using this app!</p>
 						</div>						
+					</div>
+					<div class="large-3 columns">
+						<input type="submit" class="already_connected" value="Already Friends"
+					</div>
+				</li>
+				<li class="friend_container large-12 columns">
+					<div class="large-2 columns"><div class="friend_profile_pic"></div></div>
+					<div class="large-7 columns">
+						<div class="friend_name">
+							<span><a href="#"><b>Jessica Tan</b></a></span>
+						</div>
+						<div class="friend_greeting">
+							<p>Hello, I'm, using this app!</p>
+						</div>						
+					</div>
+					<div class="large-3 columns">
+						<input type="submit" class="small success button" value="Connect"
 					</div>
 				</li>																			
 			</ul>

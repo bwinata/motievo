@@ -36,11 +36,11 @@
 	}
 	#sign_up {
 		height: auto;
-		width: 400px;
+		width: 375px;
 	}
 	#sign_in {
 		height: auto;
-		width: 400px;
+		width: 375px;
 	}	
 	.details {
 		background-color: black;
@@ -51,12 +51,12 @@
 
 <body>
 	<div class="row">
-		<h2 style="color:white">Catch up with old and new friends</h2>
+		<h3 style="color:white">Catch up with old and new friends</h3>
 		<hr></hr>
 	</div>
 	<div id="credentials" class="row">
 		<div id="sign_up" class="large-6 columns details">
-			<h2 style="color:white;">Register</h2>
+			<h3 style="color:white;">Register</h3>
 			<hr></hr>
 			<form>
 				<span style="color:white;">Full Name</span><br /><br />
@@ -73,7 +73,7 @@
 			</form>
 		</div>
 		<div id="sign_in" class="large-6 columns details">
-			<h2 style="color: white;">Sign In</h2>
+			<h3 style="color: white;">Sign In</h3>
 			<hr></hr>
 			<form>
 				<span style="color:white;">Email</span><br /><br />

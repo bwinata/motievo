@@ -2,7 +2,7 @@
 	#footer {
 	    color: #FFFFFF;
 	    background: rgba(0, 0, 0, 0.8);
-	    margin-top: 35px;
+	    margin-top: 75px;
 	    padding: 5px;
 	}
 	#footer a {
