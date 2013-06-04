@@ -12,7 +12,7 @@
 <style type="text/css">
 	body {
 		height: 100%;
-		background: url(<?php echo base_url() . 'images/bondi.jpg'; ?>);
+		background: url(<?php echo base_url() . 'images/blurred_lines.jpg'; ?>);
 		background-size: cover;
 	}
 	#interest_box {

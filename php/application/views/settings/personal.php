@@ -52,7 +52,7 @@
 <body>
 	<div id="settings_header" class="row">
 		<div class="large-12 columns">
-			<h4 style="color: white;">My Settings</h4>
+			<h4 style="color: white;">My settings</h4>
 		</div>
 	</div>
 	<div id="settings_options" class="row">
@@ -61,13 +61,13 @@
 		<div id="privacy_tab" class="label"><a href="#privacy" style="color: white;"><h5 style="color: white;">Privacy</h5></a></div>
 	</div>
 	<div class="row">
-		<div style="display: block;" id="settings_panel_personal" class="large-7 columns container">
+		<div style="display: none;" id="settings_panel_personal" class="large-7 columns container">
 			<h4>Personal</h4>
 			<hr></hr>
 			<form>
 				<h6 class="subheader"><b>Display Picture</b></h6>
 				<div style="margin-left: -15px;" class="large-4 columns">				
-					<div id="display_pic"></div>
+					<div id="display_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div>
 				</div>
 				<div class="large-6 columns">
 					<input type="submit" class="small default button" id="change_profile_pic_btn" value="Change Picture" />
@@ -106,6 +106,14 @@
 				<input type="submit" class="small success button" id="wallpaper_btn" value="Change Wallpaper" />
 				<hr></hr>				
 			</form>				
-		</div>				
+		</div>
+		<div style="display: block;" id="settings_panel_dashboard" class="large-7 columns container">
+			<h4>Privacy</h4>
+			<hr></hr>
+			<form>
+				<input type="submit" class="small alert button" id="wallpaper_btn" value="Terminate Account Forever" />
+				<hr></hr>				
+			</form>				
+		</div>		
 	</div> 	
 </body>

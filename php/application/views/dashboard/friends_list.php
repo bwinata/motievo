@@ -20,12 +20,12 @@
 		background-color: black;
 	}
 	.container {
-		background: rgba(255, 255, 255, 0.80);
+		background: rgba(255, 255, 255, 0.90);
 		border-radius: 5px;
 		padding: 10px;
 	}
 	.friend_container {
-		background: rgba(255, 255, 255, 0.80);
+		background: rgba(255, 255, 255, 0.90);
 		border-radius: 5px;
 		margin-left: -20px;
 		margin-bottom: 10px;
@@ -50,7 +50,7 @@
 		<div class="large-7 columns">
 			<ul class="ul_friends large-12 columns">
 				<li class="friend_container large-12 columns">
-					<div class="large-2 columns"><div class="friend_profile_pic"></div></div>
+					<div class="large-2 columns"><div class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div></div>
 					<div class="large-10 columns">
 						<div class="friend_name">
 							<span><a href="#"><b>Jessica Tan</b></a></span>

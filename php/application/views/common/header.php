@@ -16,7 +16,7 @@
 
 <script>
 	$(document).ready(function () {
-		document.body.style.background = "url('<?php echo base_url() . 'images/bondi.jpg'; ?>')";
+		document.body.style.background = "url('<?php echo base_url() . 'images/blurred_lines.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
 	});
@@ -35,13 +35,12 @@
     	</ul>
     	<section class="top-bar-section">
     		<ul class="right">
-    			<li class="name"><span style="color: white; padding: 20px;"><b>Find a Friend</b></span></li>
     			<li class="name">    				
     				<input type="text" id="search_friend" name="search_friend_name" placeholder="Username or Email" maxlength="40">
     			</li>
     			<li class="divider hide-for-small"></li>    			
     			<li class="name">
-    				<input type="submit" id="search_friend_btn" class="small default button" value="Find" />
+    				<input type="submit" id="search_friend_btn" class="small default button" value="Find a Friend" />
     			</li>
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="<?php echo site_url('dashboard/me'); ?>">Dashboard</a></li>
