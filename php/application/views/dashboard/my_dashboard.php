@@ -4,7 +4,7 @@
 		background: rgba(0, 0, 0, 0.60);
 		border-radius: 5px;
 	}
-	#past_happenings, #upcoming_happenings {
+	.nav_left, .nav_right {
 		position: relative;top: 20px;
 	}
 	.other_party {
@@ -28,9 +28,6 @@
 	}
 </style>
 
-<link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
-<script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
-
 <script>
 	$(document).ready(function () {
 		$('.img').click(function () {
@@ -39,6 +36,8 @@
 	});
 </script>
 
+<link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
+<script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
 <p id="back-top"><a href="#top"><span></span></a></p>
 
 <body>
@@ -58,7 +57,7 @@
 	</div>
 	<br />
 	<div class="row">
-		<div id="past_happenings" class="large-7 columns" style="margin-left: -15px;">
+		<div class="nav_left large-7 columns" style="margin-left: -15px;">
 			<div class="container">
 				<h5>My Happenings</h5>
 			</div>
@@ -95,14 +94,8 @@
 				<br /><br />
 			</div>				
 		</div>
-		<div id="upcoming_happenings" class="large-4 columns container" style="width: 400px;">
-			<h5>Upcoming Happenings</h5>
-			<hr></hr>
-			<span style="font-size:12px;"><b>6 June 2013</b></span><br /><br />
-			<span style="font-size: 15px;" class="title_upcoming">Having dinner</span>
-			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br />
-			<h6 class="subheader"><b>@ Darling Harbour</b></h6>
-			<hr></hr>
+		<div class="nav_right large-4 columns container" style="width: 400px;">
+			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
 	
