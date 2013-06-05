@@ -32,6 +32,10 @@
 	});
 </script>
 
+<link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
+<script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
+<p id="back-top"><a href="#top"><span></span></a></p>
+
 <body>
 	<div id="greeting" class="row">
 		<div class="large-7 columns">
@@ -47,7 +51,7 @@
 	<div class="row">
 		<div id="past_happenings" class="large-7 columns" style="margin-left: -15px;">
 			<div class="container">
-				<h4>Our Happenings</h4>
+				<h5>Our Happenings</h5>
 			</div>
 			<br />
 			<div id="010613_1" class="container">
@@ -83,12 +87,7 @@
 			</div>				
 		</div>
 		<div id="upcoming_happenings" class="large-5 columns container">
-			<h4>Upcoming Happenings with Jessica</h4>
-			<hr></hr>
-			<span style="font-size:14px;">6 June 2013</span>
-			<h6 class="title_upcoming">Having dinner</h6>
-			<h6 class="subheader">Darling Harbour</h6>
-			<hr></hr>
+			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
 	

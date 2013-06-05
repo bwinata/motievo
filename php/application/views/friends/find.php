@@ -38,6 +38,9 @@
 	}
 </style>
 
+<link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
+<script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
+<p id="back-top"><a href="#top"><span></span></a></p>
 
 <body>
 	<div id="contacts_title" class="row">
@@ -80,13 +83,7 @@
 			</ul>
 		</div>
 		<div id="upcoming_happenings" class="large-4 columns container" style="width: 400px;">
-			<h5>Upcoming Happenings</h5>
-			<hr></hr>
-			<span style="font-size:12px;"><b>6 June 2013</b></span><br /><br />
-			<span style="font-size: 15px;" class="title_upcoming">Having dinner</span>
-			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br />
-			<h6 class="subheader"><b>@ Darling Harbour</b></h6>
-			<hr></hr>
+			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
 	
