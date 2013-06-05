@@ -12,6 +12,10 @@
 	a:hover {
 		text-decoration: underline;
 	}
+	.inline_seperator {
+		height: 1px;
+		width: 10px;
+	}
 </style>	
 
 <script>
@@ -35,13 +39,10 @@
     	</ul>
     	<section class="top-bar-section">
     		<ul class="right">
-    			<li class="name">    				
-    				<input type="text" id="search_friend" name="search_friend_name" placeholder="Username or Email" maxlength="40">
-    			</li>
-    			<li class="divider hide-for-small"></li>    			
-    			<li class="name">
-    				<input type="submit" id="search_friend_btn" class="small default button" value="Find a Friend" />
-    			</li>
+    			<li class="name"><input type="text" id="search_friend" name="search_friend_name" placeholder="Username or Email" maxlength="40"></li>
+    			<li class="name"><div class="inline_seperator"></div></li>    			
+    			<li class="name"><input type="submit" id="search_friend_btn" class="small default button" value="Find a Friend" /></li>
+    			<li class="name"><div class="inline_seperator"></div></li>    			    			
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="<?php echo site_url('dashboard/me'); ?>">Dashboard</a></li>
     			<li class="divider hide-for-small"></li>
