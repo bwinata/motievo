@@ -26,7 +26,7 @@
 	height: 108px;
 	display: block;
 	margin-bottom: 7px;
-	background: #aaa url('http://localhost/catchup/images/default/up-arrow.png') no-repeat center center;
+	background: #aaa url('/images/default/up-arrow.png') no-repeat center center;
 
 	/* rounded corners */
 	-webkit-border-radius: 15px;
