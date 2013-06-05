@@ -33,21 +33,8 @@
 	}
 </style>
 
-<script>
-	$(document).ready(function () {
-		$('#personal_tab').click(function () {
-			document.getElementById('settings_panel_dashboard').style.display = 'none';
-			document.getElementById('settings_panel_personal').style.display = 'block';
-			document.getElementById($(this).attr('id')).style.textDecoration = 'underline';
-		});
-				
-		$('#dashboard_tab').click(function () {
-			document.getElementById('settings_panel_personal').style.display = 'none';
-			document.getElementById('settings_panel_dashboard').style.display = 'block';
-			document.getElementById($(this).attr('id')).style.textDecoration = 'underline';
-		});
-	});
-</script>
+<script>var selection = '<?php echo $settings_page; ?>'</script>
+<script src="<?php echo base_url() . 'js/settings_tab_selection.js'; ?>"></script>
 
 <body>
 	<div id="settings_header" class="row">
@@ -56,12 +43,10 @@
 		</div>
 	</div>
 	<div id="settings_options" class="row">
-		<div id="personal_tab" class="label"><a href="#settings_panel_personal" style="color: white;"><h5 style="color: white;">Personal</h5></a></div>
-		<div id="dashboard_tab" class="label"><a href="#settings_panel_dashboard" style="color: white;"><h5 style="color: white;">Dashboard</h5></a></div>
-		<div id="privacy_tab" class="label"><a href="#privacy" style="color: white;"><h5 style="color: white;">Privacy</h5></a></div>
+		<?php include('settings_tab.php'); ?>
 	</div>
 	<div class="row">
-		<div style="display: none;" id="settings_panel_personal" class="large-7 columns container">
+		<div id="settings_panel_personal" class="large-7 columns container">
 			<h4>Personal</h4>
 			<hr></hr>
 			<form>
@@ -94,26 +79,6 @@
 				<hr></hr>				
 				<input type="submit" class="small success button" id="update_details_btn" value="Update Details" />				
 			</form>
-		</div>
-		<div style="display: none;" id="settings_panel_dashboard" class="large-7 columns container">
-			<h4>Dashboard</h4>
-			<hr></hr>
-			<form>
-				<h6 class="subheader"><b>Wallpaper</b></h6>
-				<div id="wallpaper">
-					<img src="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" />
-				</div><br />
-				<input type="submit" class="small success button" id="wallpaper_btn" value="Change Wallpaper" />
-				<hr></hr>				
-			</form>				
-		</div>
-		<div style="display: block;" id="settings_panel_dashboard" class="large-7 columns container">
-			<h4>Privacy</h4>
-			<hr></hr>
-			<form>
-				<input type="submit" class="small alert button" id="wallpaper_btn" value="Terminate Account Forever" />
-				<hr></hr>				
-			</form>				
 		</div>		
 	</div> 	
 </body>

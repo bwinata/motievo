@@ -43,55 +43,40 @@
 <body>
 	<div id="greeting" class="row">
 		<div class="large-7 columns">
-			<h3 style="color: white;">Barry Winata</h3>
+			<h3 style="color: white;">We're going Bushwalking!</h3>
 		</div>
 		<div class="large-4 columns">
     		<ul class="button-group right">
-    			<li class="name"><h3><a href="<?php echo site_url('dashboard/contacts'); ?>" style="color: white;" >Friends</a></h3></li>
-    			<li class="name"><div class="inline_separator"></div></li>    			
-    			<li class="name"><h3 style="color: white;">|</h3></li>    				
-    			<li class="name"><div class="inline_separator"></div></li>
-    			<li class="name"><h3><a href="<?php echo site_url('event/organize'); ?>" style="color: white;" >Create</a></h3></li>
+    			<li class="name"><h6 style="color: white; margin-top: 20px;">Created by <a href="#">Jessica Tan</a></h6></li>
     		</ul>
 		</div>
 	</div>
 	<br />
 	<div class="row">
 		<div class="nav_left large-7 columns" style="margin-left: -15px;">
-			<div class="container">
-				<h5>My Happenings</h5>
-			</div>
-			<br />
 			<div id="010613_1" class="container">
-				<h5>Lunch with a mate</h5>
-				<span style="font-size: 14px;"><b>1 June 2013</b></span><br /><br />
-				<h6 class="subheader">@ Surry Hills</h6>
+				<h5>June 20 2013</h5>
+				<hr></hr>
+				<h5>7:00 PM to 10:00 PM</h5>
+				<hr></hr>				
+				<h4 class="subheader">@ Surry Hills</h4>
 				<iframe width="525" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 				<hr></hr>
-				<a href="#" class="img" id="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" data-reveal-id="myModal"><img src="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" /></a>
-				<span class="photo_caption">Checking out the sights</span>
+				<h5>Meeting Point:</h5>
+				<p>Central Station - Eddy Avenue</p>
 				<hr></hr>
-				<p class="my_posts">
-					Not too sure what I'm doing here, but I love it. Can't wait to see what happens next.
+				<h5>Details:</h5>
+				<p class="event_details">
+					This is a test event. Seems like we're going bushwalking. It's been a while, since any of us have done 
+					anything like this. This should be fun and interesting. We'll start in Surry Hills and make our way to the edge
+					of the city.
 				</p>
 				<hr></hr>
-				<br /><br />
-			</div>
-			<br /><br /><br />
-			<div id="010613_2" class="container">
-				<h5>Dinner with a mate</h5>
-				<span style="font-size: 14px;"><b>1 June 2013</b></span><br /><br />
-				<h6 class="subheader">@ Surry Hills</h6>
-				<iframe width="525" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-				<hr></hr>
-				<a href="#" class="img" id="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" data-reveal-id="myModal"><img src="<?php echo base_url() . 'images/barry.winata@yahoo.com/the_rocks.jpg'; ?>" /></a>
-				<span class="photo_caption">Checking out the sights</span>
-				<hr></hr>
-				<p class="my_posts">
-					Not too sure what I'm doing here, but I love it. Can't wait to see what happens next.
-				</p>
-				<hr></hr>
-				<br /><br />
+				<form>
+					<input type="submit" id="going_btn" class="small default button" value="I'm Going" />
+					<input type="submit" id="postpone_btn" class="small alert button" value="Can't Make it" />					
+				</form>
+				<br />
 			</div>				
 		</div>
 		<div class="nav_right large-4 columns container" style="width: 400px;">
