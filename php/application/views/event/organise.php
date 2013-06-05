@@ -50,13 +50,7 @@
 			</form>
 		</div>
 		<div id="upcoming_happenings" class="large-4 columns container">
-			<h5>Upcoming Happenings</h5>
-			<hr></hr>
-			<h6 class="title_upcoming">Having dinner with Jess</h6>
-			<span>with </span><span class="other_party"><b>Jessica Tan</b></span><br /><br />
-			<span style="font-size:14px;">6 June 2013</span>
-			<h6 class="subheader">Darling Harbour</h6>
-			<hr></hr>
+			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>	
 	</div>
 </body>
