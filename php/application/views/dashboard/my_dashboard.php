@@ -26,19 +26,10 @@
 		width: 20px;
 		height: 1px;
 	}
-	.scroll_up {
-	    width:108px;
-	    height:108px;
-	    opacity:0.6;
-	    position:fixed;
-	    bottom:30px;
-	    left:200px;
-	    display:block;
-	    text-indent:-9999px;
-	    background: url('<?php echo base_url() . 'images/default/up-arrow.png'; ?>') no-repeat;
-	}
-	
 </style>
+
+<link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
+<script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
 
 <script>
 	$(document).ready(function () {
@@ -48,8 +39,9 @@
 	});
 </script>
 
+<p id="back-top"><a href="#top"><span></span></a></p>
+
 <body>
-	<a href="#" class="scroll_up">Scroll</a>
 	<div id="greeting" class="row">
 		<div class="large-7 columns">
 			<h3 style="color: white;">Barry Winata</h3>
@@ -114,9 +106,7 @@
 		</div>			
 	</div>
 	
-	<div id="myModal" class="reveal-modal">
-		
-	</div>	
+	<div id="myModal" class="reveal-modal"></div>	
 		
 	<script>
 	      document.write('<script src=' +
@@ -128,9 +118,7 @@
     <script src="<?php echo base_url() . 'js/fdn/foundation.magellan.js'; ?>"></script>
     <script src="<?php echo base_url() . 'js/fdn/foundation.reveal.js'; ?>"></script>
 	    
-    <script>
-        $(document).foundation();
-    </script>
+    <script>$(document).foundation();</script>
 
 	
 </body>
