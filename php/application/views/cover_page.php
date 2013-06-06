@@ -9,7 +9,7 @@
     <script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
 </head>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 
 <style type="text/css">
 	body {
@@ -31,19 +31,22 @@
 
 <script>
 	$(document).ready(function () {
-		$.ajax({
-			type	: 'POST',
-			url		: '<?php echo site_url('launch/gauge_interest'); ?>',
-			data	: fields,
-			dataType: 'json',
-			success	: function(data) {
-				if (data.result){
-					alert('It worked!');
+		$('#interest_btn').click(function () {
+			$.ajax({
+				type	: 'POST',
+				url		: '<?php echo site_url('launch/gauge_interest'); ?>',
+				data	: $('#interest_form').serialize(),
+				dataType: 'json',
+				success	: function(data) {
+					if (data.result){
+						alert('It worked!');
+					}
+				},
+				error	: function(data) {
+					alert("Something went wrong!");
 				}
-			},
-			error	: function(data) {
-				alert("Something went wrong!");
-			}
+			});
+			return false;			
 		});
 	});
 </script>
@@ -56,9 +59,9 @@
 				We'll let you know when things really start to happen.</p>
 			<hr></hr>
 			<span style="color: #FFF;"><b>Email:</b></span><br /><br />
-			<form>
+			<form id="interest_form">
 				<input type="text" id="email" name="user_email" maxlenght="40" />
-				<input type="submit" class="button success" value="I'm interested" />
+				<input type="submit" id="interest_btn" class="button success" value="I'm interested" />
 			</form>
 		</div>
 	</div>
