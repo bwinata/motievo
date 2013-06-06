@@ -9,6 +9,8 @@
     <script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
 </head>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
 <style type="text/css">
 	body {
 		height: 100%;
@@ -26,6 +28,25 @@
 		border-radius: 5px;
 	}
 </style>
+
+<script>
+	$(document).ready(function () {
+		$.ajax({
+			type	: 'POST',
+			url		: '<?php echo site_url('launch/gauge_interest'); ?>',
+			data	: fields,
+			dataType: 'json',
+			success	: function(data) {
+				if (data.result){
+					alert('It worked!');
+				}
+			},
+			error	: function(data) {
+				alert("Something went wrong!");
+			}
+		});
+	});
+</script>
 
 <body>
 	<div id="interest_row" class="row">			
