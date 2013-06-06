@@ -28,6 +28,23 @@
 	}
 </style>
 
+<style type="text/css">
+	#notification {
+		position: fixed;
+		width: 230px;
+		height: 200px;
+		background: rgba(255, 255, 255, 0.80);
+		border-radius: 5px;
+	}
+</style>
+
+<script>
+	$(document).ready(function () {
+		$('#notification').show();
+		
+	});
+</script>
+
 <script>
 	$(document).ready(function () {
 		$('.img').click(function () {
@@ -35,6 +52,15 @@
 		});
 	});
 </script>
+
+<div id="notification" style="padding: 10px;">
+	<span style="font-size: 14px;"><b>Jessica Tan inviting you to a happening</b></span><br /><br />
+	<span style="font-size: 14px;"><b>Catchup Dinner</b></span><br /><br />
+	<span style="font-size: 12px;"><b>15 June 2013</b></span><br /><br />
+	<span style="font-size: 14px;"><b>8:00 PM</b></span>
+
+</div>
+
 
 <link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
 <script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>

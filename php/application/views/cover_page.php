@@ -32,7 +32,7 @@
 		<div id="interest_box" class="large-5 large-centered columns">
 			<h2 style="color: #FFF;">Get a life!</h2>
 			<p style="color: #FFF; font-size:15px;">Express your interest!<br />
-									We'll let you know when things really start to happen.</p>
+				We'll let you know when things really start to happen.</p>
 			<hr></hr>
 			<span style="color: #FFF;"><b>Email:</b></span><br /><br />
 			<form>
