@@ -9,6 +9,8 @@
     <script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
 </head>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
 <style type="text/css">
 	body {
 		height: 100%;
@@ -27,12 +29,31 @@
 	}
 </style>
 
+<script>
+	$(document).ready(function () {
+		$.ajax({
+			type	: 'POST',
+			url		: '<?php echo site_url('launch/gauge_interest'); ?>',
+			data	: fields,
+			dataType: 'json',
+			success	: function(data) {
+				if (data.result){
+					alert('It worked!');
+				}
+			},
+			error	: function(data) {
+				alert("Something went wrong!");
+			}
+		});
+	});
+</script>
+
 <body>
 	<div id="interest_row" class="row">			
 		<div id="interest_box" class="large-5 large-centered columns">
 			<h2 style="color: #FFF;">Get a life!</h2>
 			<p style="color: #FFF; font-size:15px;">Express your interest!<br />
-									We'll let you know when things really start to happen.</p>
+				We'll let you know when things really start to happen.</p>
 			<hr></hr>
 			<span style="color: #FFF;"><b>Email:</b></span><br /><br />
 			<form>
