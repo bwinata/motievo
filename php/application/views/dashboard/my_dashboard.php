@@ -58,7 +58,6 @@
 	<span style="font-size: 14px;"><b>Catchup Dinner</b></span><br /><br />
 	<span style="font-size: 12px;"><b>15 June 2013</b></span><br /><br />
 	<span style="font-size: 14px;"><b>8:00 PM</b></span>
-
 </div>
 
 

@@ -18,7 +18,7 @@
 		background-size: cover;
 	}
 	#interest_box {
-		height: 300px;
+		height: auto;
 		width: 400px;
 		background-color: #000;
 		background: rgba(0, 0, 0, 0.9);
