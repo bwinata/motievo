@@ -1,7 +1,8 @@
 #back-top {
 	position: fixed;
 	bottom: 5%;
-	left: 8%;
+	left: 50%;
+	margin-left: -630px;
 }
 #back-top a {
 	width: 108px;

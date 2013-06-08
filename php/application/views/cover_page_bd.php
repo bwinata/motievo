@@ -10,9 +10,53 @@
 
 <script>
 	$(document).ready(function () {
+		/* Load background image */
 		document.body.style.background = "url('<?php echo base_url() . 'images/blurred_lines.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
+		
+		
+		$('#sign_up_btn').click(function () {
+			$.ajax({
+				type	: 'POST',
+				url		: '<?php echo site_url('credentials/register_user'); ?>',
+				data	: $('#registration_form').serialize(),
+				dataType: 'json',
+				success	: function(data) {
+					switch(data.response) {
+						case 'empty_fields':
+							document.getElementById('alert').innerHTML = 'Please make sure all fields have been filled in.';
+							document.getElementById('alert').style.display = 'block';
+	                        $.each(data.result, function(k, v) {
+	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+	                        });
+							break;
+						case 'invalid_fields':
+							document.getElementById('alert').innerHTML = 'Make sure that each field has been correctly entered.';
+							document.getElementById('alert').style.display = 'block';
+	                        $.each(data.result, function(k, v) {
+	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+	                        });
+							break;
+						case 'user_taken':
+							alert('User already exists');
+							break;
+						case 'user_registered':
+							alert('User is registered');
+							break;
+						case 'critical_error':
+							alert('A critical error has just occurred');
+							break;
+						default:
+							break;
+					};
+				},
+				error	: function(data) {
+					alert("Something went wrong!");
+				}
+			});
+			return false;
+		});
 	});
 </script>
 
@@ -48,21 +92,26 @@
 		<h3 style="color:white">Catch up with old and new friends</h3>
 		<hr></hr>
 	</div>
+	<div class="row">
+		<div data-alert class="alert-box alert"  id="alert" style="display: none;">
+		  <a href="#" class="close">&times;</a>
+		</div>		
+	</div>
 	<div id="credentials" class="row">
 		<div id="sign_up" class="large-6 columns details">
 			<h3 style="color:white;">Register</h3>
 			<hr></hr>
-			<form>
+			<form id="registration_form">
 				<span style="color:white;">Full Name</span><br /><br />
 				<input type="text" id="full_name_info" name="full_name" />
 				<span style="color:white;">Username</span><br /><br />
 				<input type="text" id="username_info" name="username" />				
 				<span style="color:white;"`>Email</span><br /><br />
-				<input type="text" id="email_info" name="email" />
+				<input type="text" id="user_email_info" name="user_email" />
 				<span style="color:white;">Password</span><br /><br />
-				<input type="text" id="password_info" name="password" />
+				<input type="password" id="password_info" name="password" />
 				<span style="color:white;">Re-type Password</span><br /><br />
-				<input type="text" id="re_password_info" name="re_password" />
+				<input type="password" id="re_password_info" name="re_password" />
 				<input type="submit" class="success button" id="sign_up_btn" value="Get a life" />				
 			</form>
 		</div>
@@ -73,7 +122,7 @@
 				<span style="color:white;">Email</span><br /><br />
 				<input type="text" id="email_login" name="email" />
 				<span style="color:white;">Password</span><br /><br />
-				<input type="text" id="password_login" name="password" />
+				<input type="password" id="password_login" name="password" />
 				<input type="submit" class="default button" id="sign_in_btn" value="Let's go" />				
 			</form>
 		</div>

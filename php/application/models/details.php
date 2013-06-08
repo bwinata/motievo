@@ -1,0 +1,12 @@
+<?php
+
+class Details extends CI_Model
+{
+	public function get_details()
+	{
+		return array_map('trim', $_POST);
+	}
+}
+
+
+?>
