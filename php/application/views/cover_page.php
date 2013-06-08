@@ -103,7 +103,7 @@
       <a class="close-reveal-modal">&#215;</a>
     </div>    
     
-    <?php include('/application/views/common/foundation_js_dep.php'); ?>	
+    <?php include('application/views/common/foundation_js_dep.php'); ?>	
 	
 </body>
 </html>
