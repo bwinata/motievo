@@ -33,8 +33,8 @@ class Launch extends CI_Controller
 		}
 		else
 		{
-			echo json_encode(array('response' => 'registered', 'result' => 'User has been registerd'));
-			//echo json_encode($this->Launch_Interest->gauge_interest());
+			/* If no field error occurs then proceed to register interest */
+			echo json_encode($this->Launch_Interest->register_interest($email));
 		}
 	}
 	

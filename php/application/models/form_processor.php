@@ -60,6 +60,12 @@ class Form_Processor extends CI_Model
 						$this->valid_fields[$field] = $field_array['id'][$field];
 					}					
 					break;
+				case 'password':
+					if (!preg_match('/^[A-Za-z0-9_-]{8,20}$/', $details[$field]))
+					{
+						$this->valid_fields[$field] = $field_array['id'][$field];
+					}
+					break;
 				default:
 					if (!preg_match('/^[A-Z]/i', $details[$field]))
 					{
