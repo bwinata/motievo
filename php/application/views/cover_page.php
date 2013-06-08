@@ -38,15 +38,28 @@
 				data	: $('#interest_form').serialize(),
 				dataType: 'json',
 				success	: function(data) {
-					if (data.result){
-						alert('It worked!');
-					}
+					switch(data.response) {
+						case 'empty_fields':
+	                        $.each(data.result, function(k, v) {
+	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+	                        });							
+							alert('Fields are empty');
+							break;
+						case 'invalid_fields':
+							alert('Fields are invalid');
+						case 'registered':
+							alert(data.result);
+							break;
+						default:
+							alert('Everything is okay');
+							break;
+					};
 				},
 				error	: function(data) {
 					alert("Something went wrong!");
 				}
 			});
-			return false;			
+			return false;
 		});
 	});
 </script>
