@@ -48,6 +48,7 @@ class Credentials extends CI_Controller
 	public function activate ()
 	{
 		/* Retrieve email and activation code via URI */
+		
 		$this->Register->activate_user();
 	}
 	/* ============================================================== */
