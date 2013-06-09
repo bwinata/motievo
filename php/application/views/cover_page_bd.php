@@ -57,6 +57,46 @@
 			});
 			return false;
 		});
+		
+		
+		$('#sign_in_btn').click(function () {			
+			$.ajax({
+				type	: 'POST',
+				url		: '<?php echo site_url('credentials/signin_user'); ?>',
+				data	: $('#signin_form').serialize(),
+				dataType: 'json',
+				success	: function(data) {
+					switch(data.response) {
+						case 'empty_fields':
+							document.getElementById('alert').innerHTML = 'Please make sure all fields have been filled in.';
+							document.getElementById('alert').style.display = 'block';
+	                        $.each(data.result, function(k, v) {
+	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+	                        });
+							break;
+						case 'invalid_fields':
+							document.getElementById('alert').innerHTML = 'Make sure that each field has been correctly entered.';
+							document.getElementById('alert').style.display = 'block';
+	                        $.each(data.result, function(k, v) {
+	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+	                        });
+							break;
+						case 'login_error':
+							alert('Login error');
+							break;
+						case 'logged_in':
+							window.location = data.result;
+							break;
+						default:
+							break;
+					};
+				},
+				error	: function(data) {
+					alert("Something went wrong!");
+				}
+			});
+			return false;
+		});
 	});
 </script>
 
@@ -84,6 +124,9 @@
 		background-color: black;
 		background: rgba(0, 0, 0, 0.9);
 		border-radius: 5px;
+	}
+	a:hover {
+		text-decoration: underline;
 	}
 </style>
 
@@ -118,9 +161,9 @@
 		<div id="sign_in" class="large-6 columns details">
 			<h3 style="color: white;">Sign In</h3>
 			<hr></hr>
-			<form>
+			<form id="signin_form">
 				<span style="color:white;">Email</span><br /><br />
-				<input type="text" id="email_login" name="email" />
+				<input type="text" id="email_login" name="user_email" />
 				<span style="color:white;">Password</span><br /><br />
 				<input type="password" id="password_login" name="password" />
 				<input type="submit" class="default button" id="sign_in_btn" value="Let's go" />				
