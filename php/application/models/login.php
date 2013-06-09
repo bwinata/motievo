@@ -5,7 +5,7 @@ class Login extends CI_Model
 	public function login_user ($login_details)
 	{
 		$encrypted_pword = sha1($login_details['password']);		
-		$user_available = $this->db->query("SELECT email, password FROM registration WHERE (email = '$login_details[user_email]' AND password = '$encrypted_pword')");
+		$user_available = $this->db->query("SELECT email, password, user_identifier FROM registration WHERE (email = '$login_details[user_email]' AND password = '$encrypted_pword')");
 		if($user_available->num_rows() == 1)
 		{
 			/* Create temporary session */
