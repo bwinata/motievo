@@ -2,6 +2,13 @@
 
 class Dashboard extends CI_Controller
 {
+	public function __construct ()
+	{
+		parent::__construct();
+		$this->load->model('Details');
+		$this->load->model('Dashboard_Content', '', TRUE);
+	}
+	
 	public function me ()
 	{
 		$data['page_title'] = 'Barry Winata | Dashboard';
@@ -24,6 +31,13 @@ class Dashboard extends CI_Controller
 		$this->load->view('common/header', $data);
 		$this->load->view('dashboard/friends_list');
 		$this->load->view('common/footer');
+	}
+	
+	/* Handlers */
+	public function get_user_info ()
+	{
+		$user_details = $this->Details->get_details();
+		echo json_encode($this->Dashboard_Content->fetch_content($user_details));
 	}
 	
 }
