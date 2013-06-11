@@ -77,6 +77,8 @@
 					<input style="width:200px; border: solid;" type="password" id="re_pw_settings" name="re_pw_name" />
 				</div>
 				<hr></hr>				
+				<h6 class="subheader"><b>A one liner about me:</b></h6>
+				<input style="width:400px; border: solid;" type="text" id="about_me_settings" name="about_me_settings_name" />
 				<input type="submit" class="small success button" id="update_details_btn" value="Update Details" />				
 			</form>
 		</div>		
