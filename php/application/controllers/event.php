@@ -24,6 +24,14 @@ class Event extends CI_Controller
 	/* ============================================================== */
 	/* PUBLIC FUNCTIONS */
 	/* ============================================================== */	
+	public function __construct ()
+	{
+		parent::_construct();
+		$this->load->model('Details');
+		$this->load->model('Form_Processor');
+		$this->load->model('Event_Content', '', TRUE);	
+	}
+	
 	public function organize ()
 	{
 		$data['page_title'] = 'Organize a happening | Event';
@@ -40,13 +48,17 @@ class Event extends CI_Controller
 		$this->load->view('common/footer');		
 	}
 	
+	public function all ()
+	{
+		$data['page_title'] = 'Happenings | All';
+		$this->load->view('common/header', $data);
+		$this->load->view('event/display_all_events');
+		$this->load->view('common/footer');
+	}
+	
 	/* Handlers */
 	public function create_event ()
-	{
-		$this->load->model('Details');
-		$this->load->model('Form_Processor');
-		$this->load->model('Event_Organise', '', TRUE);
-		
+	{	
 		$event_details = $this->Details->get_details();
 		$field_array = $this->combine_field_arrays($this->expected_field_names, $this->field_id);
 		
@@ -58,9 +70,14 @@ class Event extends CI_Controller
 		}
 		else
 		{
-			echo json_encode(array('response' => 'event_organised', 'result' => 'Event has been created'));
-			//echo json_encode($this->Event_Organise->create($event_details));
+			//echo json_encode(array('response' => 'event_organised', 'result' => 'Event has been created'));
+			echo json_encode($this->Event_Organise->create($event_details));
 		}
+	}
+	
+	public function fetch_content ()
+	{	
+		echo json_encode($this->Event_Content->fetch_events($user_details));
 	}
 	
 	/* ============================================================== */

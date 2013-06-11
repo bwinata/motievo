@@ -47,15 +47,11 @@
 
 <script>
 	$(document).ready(function () {
-		$('.img').click(function () {
-			document.getElementById('myModal').innerHTML = "<img src=" + $(this).attr('id') + " " +  "/ >";
-		});
-		
 		$('#event_submit_btn').click(function() {
 			$.ajax({
 				method	: 'POST',
 				url		: '<?php echo site_url('event/create_event'); ?>',
-				data	: $('#event_form').serialize(),
+				data	: $('#event_form').serialize() + '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&f_uid=' + 'fkeifodkjnjkjuhklpoll',
 				dataType: 'json',
 				success	: function(data) {
 					switch(data.response)
@@ -67,14 +63,17 @@
 	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
 	                        });						
 							break;
-						case 'valid_fields':
-							document.getElementById('alert').innerHTML = '';
+						case 'invalid_fields':
+							document.getElementById('alert').innerHTML = 'Please make sure all fields are correct.';
 							document.getElementById('alert').style.display = 'block';
 	                        $.each(data.result, function(k, v) {
 	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
 	                        });						
 							break;
 						case 'event_organised':
+							alert(data.result);
+							break;
+						case 'event_error':
 							alert(data.result);
 							break;
 						default:

@@ -66,6 +66,10 @@ class Form_Processor extends CI_Model
 						$this->valid_fields[$field] = $field_array['id'][$field];
 					}
 					break;
+				case 'event_date_name':
+					break;
+				case 'event_time_name':
+					break;
 				default:
 					if (!preg_match('/^[A-Z]/i', $details[$field]))
 					{
