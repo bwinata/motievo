@@ -66,7 +66,6 @@ class Credentials extends CI_Controller
 		}
 		else
 		{
-			//echo json_encode(array('response' => 'logged_in', 'result' => 'User is signed in!'));	
 			echo json_encode($this->Login->login_user($login_details));
 		}
 	}
@@ -74,16 +73,16 @@ class Credentials extends CI_Controller
 	public function activate ()
 	{
 		/* Retrieve email and activation code via URI */
-		
 		$this->Register->activate_user();
 	}
+	
 	/* ============================================================== */
 	/* PRIVATE FUNCTIONS */
 	/* ============================================================== */
 	private function combine_field_arrays ($field_names, $field_id)
 	{
 		return array('names' => $field_names, 'id' => $field_id);
-	}	
+	}		
 }
 
 
