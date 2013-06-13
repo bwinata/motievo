@@ -15,7 +15,7 @@ class Settings extends CI_Controller
 										  'about_me_settings_name');
 	
 	private $field_ids = array('full_name_settings_name' => 'full_name_settings',
-							   'username_name_settings' => 'username_settings',
+							   'username_settings_name' => 'username_settings',
 							   'email_settings_name' => 'email_settings',
 							   'current_pw_settings_name' => 'current_pw_settings',
 							   'new_pw_settings_name' => 'new_pw_settings',
@@ -93,8 +93,8 @@ class Settings extends CI_Controller
 		}
 		else
 		{
-			echo json_encode(array('response' => 'details_updated', 'result' => 'Fields are all not empty and are valid'));
-			/*switch($details['setting'])
+			//echo json_encode(array('response' => 'details_updated', 'result' => 'Fields are all not empty and are valid'));
+			switch($details['setting'])
 			{
 				case 'personal':
 					echo json_encode($this->Settings_Content->update_personal($details));
@@ -107,7 +107,7 @@ class Settings extends CI_Controller
 					break;
 				default:
 					break;
-			}*/			
+			}		
 		}
 	}
 	

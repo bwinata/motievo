@@ -23,6 +23,12 @@
 		document.body.style.background = "url('<?php echo base_url() . 'images/blurred_lines.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
+		
+		$('#search_friend_btn').click(function () {
+			window.location = '<?php echo site_url('friends/find'); ?>'  + '?search=' + document.getElementById('search_friend').value;
+			return false;
+		});
+		
 	});
 </script>
 
@@ -41,7 +47,7 @@
     		<ul class="right">
     			<li class="name"><input type="text" id="search_friend" name="search_friend_name" placeholder="Username or Email" maxlength="40"></li>
     			<li class="name"><div class="inline_seperator"></div></li>    			
-    			<li class="name"><input type="submit" style="border-radius: 2px;" id="search_friend_btn" class="small default button" value="Find a Friend" /></li>
+    			<li class="name"><form id="find_form"><input type="submit" style="border-radius: 2px;" id="search_friend_btn" class="small default button" value="Find a Friend" /></form></li>
     			<li class="name"><div class="inline_seperator"></div></li>    			    			
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="<?php echo site_url('dashboard/me'); ?>">Dashboard</a></li>

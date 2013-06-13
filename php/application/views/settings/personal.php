@@ -61,6 +61,12 @@
 		});
 		
 		$('#update_details_btn').click(function () {
+			var fields = new Array('full_name_settings', 'username_settings', 'email_settings',
+								   'current_pw_settings', 'new_pw_settings', 're_pw_settings', 'about_me_settings');
+			$.each(fields, function(key, value) {
+				document.getElementById(value).style.backgroundColor = '#FFF';
+			});
+			
 			$.ajax({
 				method	: 'POST',
 				url		: '<?php echo site_url('settings/update_details'); ?>',
@@ -81,6 +87,21 @@
 	                        $.each(data.result, function(k, v) {
 	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
 	                        });
+							break;
+						case 'username_taken':
+							alert('username already taken');
+							break;
+						case 'email_taken':
+							alert('email already taken');
+							break;
+						case 'incorrect_pw':
+							alert('your password is incorrect');
+							break;
+						case 'identical_new_pw':
+							alert('your new and old password are identical. Choose another one.');
+							break;
+						case 'new_re_pw_not_match':
+							alert('Please re-type your new password');
 							break;
 						case 'details_updated':
 							alert(data.result);
@@ -147,7 +168,7 @@
 					<input style="width:200px; border: solid;" type="password" id="re_pw_settings" name="re_pw_settings_name" />
 				</div>
 				<hr></hr>				
-				<h6 class="subheader"><b>A one liner about me:</b></h6>
+				<h6 class="subheader"><b>A one liner about me: (max 200 chars)</b></h6>
 				<input style="width:400px; border: solid;" type="text" id="about_me_settings" name="about_me_settings_name" />
 				<input type="submit" class="small success button" id="update_details_btn" value="Update Details" />				
 			</form>

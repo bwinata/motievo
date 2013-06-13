@@ -23,6 +23,7 @@
 		background: rgba(255, 255, 255, 0.80);
 		border-radius: 5px;
 		padding: 10px;
+		margin-bottom: 15px;
 	}
 	.friend_container {
 		background: rgba(255, 255, 255, 0.80);
@@ -38,6 +39,24 @@
 	}
 </style>
 
+<script>
+	$(document).ready(function () {
+		$.ajax({
+			method	: 'POST',
+			url		: '<?php echo site_url('friends/search_friends'); ?>',
+			data	: '&friend=' + '<?php echo $friend_name; ?>',
+			dataType: 'json',
+			success	: function(data) {
+				
+			},
+			error	: function(data) {
+				alert('Something went wrong');
+			}
+		});
+	});
+</script>
+
+
 <link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
 <script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
 <p id="back-top"><a href="#top"><span></span></a></p>
@@ -50,39 +69,16 @@
 	</div>
 	<br />
 	<div class="row">
-		<div class="large-7 columns">
-			<ul class="ul_friends large-12 columns">
-				<li class="friend_container large-12 columns">
-					<div class="large-2 columns"><div class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div></div>
-					<div class="large-7 columns">
-						<div class="friend_name">
-							<span><a href="#"><b>Jessica Tan</b></a></span>
-						</div>
-						<div class="friend_greeting">
-							<p>Hello, I'm, using this app!</p>
-						</div>						
-					</div>
-					<div class="large-3 columns">
-						<input type="submit" class="already_connected" value="Already Friends"
-					</div>
-				</li>
-				<li class="friend_container large-12 columns">
-					<div class="large-2 columns"><div class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div></div>
-					<div class="large-7 columns">
-						<div class="friend_name">
-							<span><a href="#"><b>Jessica Tan</b></a></span>
-						</div>
-						<div class="friend_greeting">
-							<p>Hello, I'm, using this app!</p>
-						</div>						
-					</div>
-					<div class="large-3 columns">
-						<input type="submit" class="small success button" value="Connect"
-					</div>
-				</li>																			
-			</ul>
+		<div id="my_happenings" class="nav_left large-7 columns" style="margin-left: -15px;">
+			<div class="container">
+				<div style="float: left; margin-right: 10px;" class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div>
+				<h5>Jessica Tan</h><br />
+				<span style="font-size: 12px;">Hi there, Im using this app!</span>
+				<input style="float: right;" type="submit" class="small success button" value="Connect" />
+				<br /><br />	
+			</div>					
 		</div>
-		<div id="upcoming_happenings" class="large-4 columns container" style="width: 400px;">
+		<div class="nav_right large-4 columns container" style="width: 400px;">
 			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
@@ -91,18 +87,6 @@
 		
 	</div>	
 		
-	<script>
-	      document.write('<script src=' +
-	      ('__proto__' in {} ? '<?php echo base_url() . 'js/vendor/zepto'; ?>' : '<?php echo base_url() . 'js/vendor/jquery'; ?>') +
-	      '.js><\/script>')
-	</script>
-	
-    <script src="<?php echo base_url() . 'js/fdn/foundation.js'; ?>"></script>  
-    <script src="<?php echo base_url() . 'js/fdn/foundation.magellan.js'; ?>"></script>
-    <script src="<?php echo base_url() . 'js/fdn/foundation.reveal.js'; ?>"></script>
-	    
-    <script>
-        $(document).foundation();
-    </script>	
+    <?php include('application/views/common/foundation_js_dep.php'); ?>	
 	
 </body>

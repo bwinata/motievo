@@ -17,6 +17,11 @@
 		
 		
 		$('#sign_up_btn').click(function () {
+			var fields = new Array('full_name_info', 'username_info', 'user_email_info', 'password_info', 're_password_info');
+			$.each(fields, function(key, value) {
+				document.getElementById(value).style.backgroundColor = '#FFF';
+			});			
+
 			$.ajax({
 				type	: 'POST',
 				url		: '<?php echo site_url('credentials/register_user'); ?>',
@@ -59,7 +64,11 @@
 		});
 		
 		
-		$('#sign_in_btn').click(function () {			
+		$('#sign_in_btn').click(function () {	
+			var fields = new Array('email_login', 'password_login');
+			$.each(fields, function(key, value) {
+				document.getElementById(value).style.backgroundColor = '#FFF';
+			});						
 			$.ajax({
 				type	: 'POST',
 				url		: '<?php echo site_url('credentials/signin_user'); ?>',
