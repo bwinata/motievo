@@ -46,6 +46,13 @@
 						case 'user_taken':
 							alert('User already exists');
 							break;
+						case 'pw_not_match':
+							document.getElementById('alert').innerHTML = 'Please re-enter your password.';						
+							document.getElementById('alert').style.display = 'block';
+	                        $.each(data.result, function(k, v) {
+	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+	                        });
+							break;							
 						case 'user_registered':
 							alert('User is registered');
 							break;

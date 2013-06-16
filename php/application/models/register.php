@@ -12,14 +12,26 @@ class Register extends CI_Model
 		else
 		{
 			$encrypted_pword = sha1($user_details['password']);
-			$identifier = $this->generate_identifier();
-			$output = $this->db->query("INSERT INTO registration (full_name, username, email, password, user_identifier) VALUES
-									('$user_details[full_name]',
-									 '$user_details[username]',
-									 '$user_details[user_email]',
-									 '$encrypted_pword',
-									 '$identifier')");
+			$encrypted_re_pword = sha1($user_details['re_password']);
 			
+			if ($encrypted_pword == $encrypted_re_pword)
+			{
+				$identifier = $this->generate_identifier();
+				
+				$output = $this->db->query("INSERT INTO registration (full_name, username, email, password, user_identifier) VALUES
+										('$user_details[full_name]',
+										 '$user_details[username]',
+										 '$user_details[user_email]',
+										 '$encrypted_pword',
+										 '$identifier')");				
+			}
+			else 
+			{
+				$pw_array['password'] = 'password_info';
+				$pw_array['re_password'] = 're_password_info';
+				
+				return array('response' => 'pw_not_match', 'result' => $pw_array);
+			}						
 			if ($this->db->affected_rows() == 1)
 			{
                 /*$body = "Thanks so much for registering with PLACHOLDER. Click on the link below to activate your account:\n\n";
@@ -37,7 +49,7 @@ class Register extends CI_Model
 
 	public function activate_user ()
 	{
-		
+		/* PLACEHOLDER */
 	}
 	
 	private function initialise_user_portfolio ($identifier)

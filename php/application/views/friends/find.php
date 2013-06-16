@@ -8,9 +8,6 @@
 		list-style-type: none;
 		margin-left: -10px;
 	}
-	.friend_name {
-		
-	}
 	.friend_greeting {
 		font-size: 13px;
 	}
@@ -32,11 +29,6 @@
 		margin-bottom: 10px;
 		padding: 10px;
 	}
-	.already_connected{
-		width: 105px;
-		height: 35px;
-		background-color: #F00;
-	}
 </style>
 
 <script>
@@ -44,14 +36,44 @@
 		$.ajax({
 			method	: 'POST',
 			url		: '<?php echo site_url('friends/search_friends'); ?>',
-			data	: '&friend=' + '<?php echo $friend_name; ?>',
+			data	: '&my_uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&friend=' + '<?php echo $friend_name; ?>',
 			dataType: 'json',
 			success	: function(data) {
-				
+				document.getElementById('friend_finder').innerHTML += data.result;
 			},
 			error	: function(data) {
 				alert('Something went wrong');
 			}
+		});
+	
+		$('body').on('click', '.connect', function (event) {
+			var id = $(this).attr('id');
+			$.ajax({
+				method	: 'POST',
+				url		: '<?php echo site_url('friends/make_friends'); ?>',
+				data	: '&my_uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&friend_uid=' + $(this).attr('id'),
+				dataType: 'json',
+				success	: function(data) {
+					switch(data.response)
+					{
+						case 'request_sent':
+							document.getElementById(id).style.backgroundColor = '#00F';
+							document.getElementById(id).value = 'Request Sent';
+							document.getElementById(id).disabled = 'true';
+							document.getElementById('request_status').innerHTML = '<h6 class="subheader"><b>Your request has been sent!<b></h6>';
+							$('#request_status').foundation('reveal', 'open');
+							break;
+						case 'request_error':
+							alert('Friend could not be added');
+							break;
+						default:
+							break;
+					}
+				},
+				error	: function(data) {
+					alert('Something went wrong');
+				}				
+			});
 		});
 	});
 </script>
@@ -69,24 +91,14 @@
 	</div>
 	<br />
 	<div class="row">
-		<div id="my_happenings" class="nav_left large-7 columns" style="margin-left: -15px;">
-			<div class="container">
-				<div style="float: left; margin-right: 10px;" class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div>
-				<h5>Jessica Tan</h><br />
-				<span style="font-size: 12px;">Hi there, Im using this app!</span>
-				<input style="float: right;" type="submit" class="small success button" value="Connect" />
-				<br /><br />	
-			</div>					
-		</div>
+		<div id="friend_finder" class="nav_left large-7 columns" style="margin-left: -15px;"></div>
 		<div class="nav_right large-4 columns container" style="width: 400px;">
 			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
 	
-	<div id="myModal" class="reveal-modal">
-		
-	</div>	
+	<div id="request_status" class="reveal-modal" style="width: 400px; left: 50%; margin-left: -200px; text-align: center;"></div>	
 		
     <?php include('application/views/common/foundation_js_dep.php'); ?>	
-	
+
 </body>

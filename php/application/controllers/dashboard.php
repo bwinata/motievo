@@ -27,12 +27,12 @@ class Dashboard extends CI_Controller
 	
 	public function contacts ()
 	{
-		$data['page_title'] = 'My Friends';
+		$data['page_title'] = 'My Friends | Dashboard';
 		$this->load->view('common/header', $data);
 		$this->load->view('dashboard/friends_list');
 		$this->load->view('common/footer');
 	}
-	
+		
 	/* Handlers */
 	public function get_user_info ()
 	{
