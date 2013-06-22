@@ -140,6 +140,27 @@ class Search extends CI_Model
 		} 
 	}
 	
+	public function fetch_current_friends ($id)
+	{
+		/* Fetch friends in column - friend_2 */
+		$friend_1_list = $this->db->query("SELECT friend_2 FROM contacts WHERE friend_1 = '$id[uid]'");
+		/* Fetch friends in column - friend_1 */
+		$friend_2_list = $this->db->query("SELECT friend_1 FROM contacts WHERE friend_2 = '$id[uid]'");
+		
+		$friends_list = array('friends_1' => $friends_1_list, '$friends_2' => $friend_2_list);
+		
+		foreach($friend_list as $list)
+		{
+			for ($i = 0; $i < $list->num_rows(); $i++)
+			{
+				
+			}
+		}
+		
+		$this->db->query("SELECT full_name, username, email FROM registration
+						  INNER JOIN registration.user_identifier = contacts.friend");
+	}
+	
 	private function check_friendship ($my_identifier, $friend_identifier)
 	{
 		$friendship_available = $this->db->query("SELECT status FROM contacts WHERE ((friend_1 = '$my_identifier' 

@@ -39,14 +39,52 @@
 </style>
 
 <script>
-	$(document).ready(function () {
-		$('#notification').show();
-		
+	 $(function() {
+	var availableTags = [
+	"ActionScript",
+	"AppleScript",
+	"Asp",
+	"BASIC",
+	"C",
+	"C++",
+	"Clojure",
+	"COBOL",
+	"ColdFusion",
+	"Erlang",
+	"Fortran",
+	"Groovy",
+	"Haskell",
+	"Java",
+	"JavaScript",
+	"Lisp",
+	"Perl",
+	"PHP",
+	"Python",
+	"Ruby",
+	"Scala",
+	"Scheme"
+	];
+	$( "#event_friend" ).autocomplete({
+	source: availableTags
+	});
 	});
 </script>
 
 <script>
 	$(document).ready(function () {
+		$.ajax({
+			method	: 'POST',
+			url		: '<?php echo site_url('friends/fetch_friends_list'); ?>',
+			data	: $('#event_form').serialize() + '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&f_uid=' + 'fkeifodkjnjkjuhklpoll',
+			dataType: 'json',
+			success	: function(data) {
+				
+			},
+			error	: function(data) {
+				
+			}
+		});
+		
 		$('#event_submit_btn').click(function() {
 			$.ajax({
 				method	: 'POST',
@@ -113,17 +151,17 @@
 					<h5>Happening</h5>
 					<input type="text" style="border: solid;" id="event_title" class="input_fields" name="event_title_name" placeholder="What are we calling this?" />
 					<h5>Friend</h5>
-					<input type="text" style="border: solid;" id="event_friend" class="input_fields" name="event_friend_name" placeholder="Type in a name" />
+					<input type="text" style="border: solid;" id="event_friend" class="input_fields" name="event_friend_name" placeholder="With who?" />
 					<h5>Date</h5>
 					<input type="text" style="border: solid;" id="event_date" class="input_fields" name="event_date_name" placeholder="What date is it on?" />
 					<h5>Time</h5>
-					<input type="text" style="border: solid;" id="event_time" class="input_fields" name="event_time_name" placeholder="When time is it on?" />		
+					<input type="text" style="border: solid;" id="event_time" class="input_fields" name="event_time_name" placeholder="What time is it on?" />		
 					<h5>Location</h5>
 					<input type="text" style="border: solid;" id="event_location" class="input_fields" name="event_location_name" placeholder="Where are we going?" />
 					<h5>Meeting Point</h5>
 					<input type="text" style="border: solid;" id="event_meeting_point" class="input_fields" name="event_meeting_point_name" placeholder="Where are we meeting?" />				
 					<h5>Details</h5>
-					<textarea id="event_description" class="input_fields" name="event_description_name" style="height: 250px; border: solid;" placeholder="What are we doing?"></textarea>
+					<textarea id="event_description" class="input_fields" name="event_description_name" style="height: 100px; border: solid;" placeholder="What are we doing?"></textarea>
 					<input type="submit" id="event_submit_btn" class="default button" name="event_submit_btn_name" value="Make it happen" />				
 				</form>
 			</div>				

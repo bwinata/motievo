@@ -61,6 +61,13 @@ class Friends extends CI_Controller
 		
 		echo json_encode($this->Search->fetch_requests($id));
 	}
+	
+	public function fetch_friends_list ()
+	{
+		$id = $this->Details->get_details();
+		
+		echo json_encode($this->Search->fetch_current_friends($id));
+	}
 }
 
 ?>

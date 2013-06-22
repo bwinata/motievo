@@ -106,7 +106,7 @@
 <body>
 	<div id="contacts_title" class="row">
 		<div class="large-7 columns">
-			<h3 style="color: white;">My Requests</h3>
+			<h3 style="color: white;">Friend Requests</h3>
 		</div>
 	</div>
 	<br />

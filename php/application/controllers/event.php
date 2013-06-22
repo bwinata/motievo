@@ -26,7 +26,7 @@ class Event extends CI_Controller
 	/* ============================================================== */	
 	public function __construct ()
 	{
-		parent::_construct();
+		parent::__construct();
 		$this->load->model('Details');
 		$this->load->model('Form_Processor');
 		$this->load->model('Event_Content', '', TRUE);	
