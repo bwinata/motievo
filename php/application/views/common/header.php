@@ -7,6 +7,7 @@
 
 <link rel="stylesheet" href="<?php echo base_url() . 'css/fdn/foundation.css'; ?>" />
 <script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
+<script src="<?php echo base_url() . 'js/highlight_error_fields.js'; ?>"></script>
 
 <style type="text/css">
 	a:hover {
@@ -20,7 +21,7 @@
 
 <script>
 	$(document).ready(function () {
-		document.body.style.background = "url('<?php echo base_url() . 'images/blurred_lines.jpg'; ?>')";
+		document.body.style.background = "url('<?php echo base_url() . 'images/Optimized-blurred_lines.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
 		
@@ -28,7 +29,6 @@
 			window.location = '<?php echo site_url('friends/find'); ?>'  + '?search=' + document.getElementById('search_friend').value;
 			return false;
 		});
-		
 	});
 </script>
 
@@ -40,7 +40,7 @@
     <nav class="top-bar">
     	<ul class="title-area">
     		<li class="name">
-    			<h1><a href="<?php echo base_url(); ?>">SocialOut</a></h1>
+    			<h1><a href="<?php echo base_url(); ?>">motievo</a></h1>
     		</li>
     	</ul>
     	<section class="top-bar-section">
@@ -48,14 +48,24 @@
     			<li class="name"><input type="text" id="search_friend" name="search_friend_name" placeholder="Username or Email" maxlength="40"></li>
     			<li class="name"><div class="inline_seperator"></div></li>    			
     			<li class="name"><form id="find_form"><input type="submit" style="border-radius: 2px;" id="search_friend_btn" class="small default button" value="Find a Friend" /></form></li>
+    			<li class="name"><div class="inline_seperator"></div></li>
+    			<li class="divider hide-for-small"></li>
+    			<li class="name"><div class="inline_seperator"></div></li>
+    			<li class="name"><a href="#" data-dropdown="drop1">Barry Winata<span data-dropdown="drop1"></span></a></li>
     			<li class="name"><div class="inline_seperator"></div></li>    			    			
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="<?php echo site_url('dashboard/me'); ?>">Dashboard</a></li>
-    			<li class="divider hide-for-small"></li>
-    			<li class="name"><a href="<?php echo site_url('settings/personal'); ?>">Settings</a></li>
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="#">Logout</a></li>
     		</ul>
     	</section>
     </nav>
+    
+<ul id="drop1" class="f-dropdown" data-dropdown-content>
+  <li><a href="<?php echo site_url('friends/requests'); ?>">Requests</a></li>
+  <li><a href="#">Friends</a></li>
+  <li><a href="#">Happenings</a></li>
+  <li><a href="<?php echo site_url('help/faq'); ?>">Settings</a></li>
+</ul>    
 </head>
+

@@ -143,22 +143,35 @@ class Search extends CI_Model
 	public function fetch_current_friends ($id)
 	{
 		/* Fetch friends in column - friend_2 */
-		$friend_1_list = $this->db->query("SELECT friend_2 FROM contacts WHERE friend_1 = '$id[uid]'");
+		$friend_1_list = $this->db->query("SELECT friend_2 AS id FROM contacts WHERE (friend_1 = '$id[uid]' AND status = 'Connected')");
 		/* Fetch friends in column - friend_1 */
-		$friend_2_list = $this->db->query("SELECT friend_1 FROM contacts WHERE friend_2 = '$id[uid]'");
+		$friend_2_list = $this->db->query("SELECT friend_1 AS id FROM contacts WHERE (friend_2 = '$id[uid]' AND status = 'Connected')");
 		
-		$friends_list = array('friends_1' => $friends_1_list, '$friends_2' => $friend_2_list);
+		$friend_list = array('friends_1' => $friend_1_list, 'friends_2' => $friend_2_list);
 		
+		$j = 0;
 		foreach($friend_list as $list)
 		{
 			for ($i = 0; $i < $list->num_rows(); $i++)
 			{
+				$friend_id = $list->row($i)->id;
+				$output = $this->db->query("SELECT full_name, username FROM registration
+								  			WHERE user_identifier = '$friend_id'");
 				
+				if ($output->num_rows() == 1)
+				{
+					$total_list[$j] = $output->row()->full_name;
+					$total_list[$j + 1] = $output->row()->username;
+					$j++;
+				}
+				else 
+				{
+					return array('response' => 'fetch_error');
+				}
 			}
 		}
 		
-		$this->db->query("SELECT full_name, username, email FROM registration
-						  INNER JOIN registration.user_identifier = contacts.friend");
+		return array('response' => 'got_friends', 'result' => $total_list);
 	}
 	
 	private function check_friendship ($my_identifier, $friend_identifier)

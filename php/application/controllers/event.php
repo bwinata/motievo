@@ -27,6 +27,7 @@ class Event extends CI_Controller
 	public function __construct ()
 	{
 		parent::__construct();
+		$this->load->model('Validation', '', TRUE);
 		$this->load->model('Details');
 		$this->load->model('Form_Processor');
 		$this->load->model('Event_Content', '', TRUE);	
@@ -34,26 +35,47 @@ class Event extends CI_Controller
 	
 	public function organize ()
 	{
-		$data['page_title'] = 'Organize a happening | Event';
-		$this->load->view('common/header', $data);
-		$this->load->view('event/organise');
-		$this->load->view('common/footer');
+		if ($this->Validation->check_login())
+		{			
+			$data['page_title'] = 'Organize a happening | Event';
+			$this->load->view('common/header', $data);
+			$this->load->view('event/organise');
+			$this->load->view('common/footer');
+		}
+		else 
+		{
+			header("Location:".site_url('main_bd/cover'));	
+		}		
 	}
 	
 	public function view ()
 	{
-		$data['page_title'] = 'Invitation | Event';
-		$this->load->view('common/header', $data);
-		$this->load->view('event/view_event');
-		$this->load->view('common/footer');		
+		if ($this->Validation->check_login())
+		{			
+			$data['page_title'] = 'Invitation | Event';
+			$this->load->view('common/header', $data);
+			$this->load->view('event/view_event');
+			$this->load->view('common/footer');
+		}
+		else 
+		{
+			header("Location:".site_url('main_bd/cover'));	
+		}		
 	}
 	
 	public function all ()
 	{
-		$data['page_title'] = 'Happenings | All';
-		$this->load->view('common/header', $data);
-		$this->load->view('event/display_all_events');
-		$this->load->view('common/footer');
+		if ($this->Validation->check_login())
+		{			
+			$data['page_title'] = 'Happenings | All';
+			$this->load->view('common/header', $data);
+			$this->load->view('event/display_all_events');
+			$this->load->view('common/footer');
+		}
+		else 
+		{
+			header("Location:".site_url('main_bd/cover'));	
+		}		
 	}
 	
 	/* Handlers */
@@ -71,7 +93,7 @@ class Event extends CI_Controller
 		else
 		{
 			//echo json_encode(array('response' => 'event_organised', 'result' => 'Event has been created'));
-			echo json_encode($this->Event_Organise->create($event_details));
+			echo json_encode($this->Event_Content->create($event_details));
 		}
 	}
 	

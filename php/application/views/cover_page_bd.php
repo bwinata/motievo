@@ -11,7 +11,7 @@
 <script>
 	$(document).ready(function () {
 		/* Load background image */
-		document.body.style.background = "url('<?php echo base_url() . 'images/blurred_lines.jpg'; ?>')";
+		document.body.style.background = "url('<?php echo base_url() . 'images/Optimized-blurred_lines.jpg'; ?>')";
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundAttachment = 'fixed';
 		
@@ -21,52 +21,55 @@
 			$.each(fields, function(key, value) {
 				document.getElementById(value).style.backgroundColor = '#FFF';
 			});			
-
-			$.ajax({
-				type	: 'POST',
-				url		: '<?php echo site_url('credentials/register_user'); ?>',
-				data	: $('#registration_form').serialize(),
-				dataType: 'json',
-				success	: function(data) {
-					switch(data.response) {
-						case 'empty_fields':
-							document.getElementById('alert').innerHTML = 'Please make sure all fields have been filled in.';
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;
-						case 'invalid_fields':
-							document.getElementById('alert').innerHTML = 'Make sure that each field has been correctly entered.';
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;
-						case 'user_taken':
-							alert('User already exists');
-							break;
-						case 'pw_not_match':
-							document.getElementById('alert').innerHTML = 'Please re-enter your password.';						
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;							
-						case 'user_registered':
-							alert('User is registered');
-							break;
-						case 'critical_error':
-							alert('A critical error has just occurred');
-							break;
-						default:
-							break;
-					};
-				},
-				error	: function(data) {
-					alert("Something went wrong!");
-				}
-			});
+			document.getElementById('register_loader').style.display = 'block';
+			setTimeout(function () {
+				$.ajax({
+					type	: 'POST',
+					url		: '<?php echo site_url('credentials/register_user'); ?>',
+					data	: $('#registration_form').serialize(),
+					dataType: 'json',
+					success	: function(data) {
+						switch(data.response) {
+							case 'empty_fields':
+								document.getElementById('alert').innerHTML = 'Please make sure all fields have been filled in.';
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;
+							case 'invalid_fields':
+								document.getElementById('alert').innerHTML = 'Make sure that each field has been correctly entered.';
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;
+							case 'user_taken':
+								alert('User already exists');
+								break;
+							case 'pw_not_match':
+								document.getElementById('alert').innerHTML = 'Please re-enter your password.';						
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;							
+							case 'user_registered':
+								alert('User is registered');
+								break;
+							case 'critical_error':
+								alert('A critical error has just occurred');
+								break;
+							default:
+								break;
+						};
+					},
+					error	: function(data) {
+						alert("Something went wrong!");
+					}
+				});
+				document.getElementById('register_loader').style.display = 'none';
+			}, 1000);
 			return false;
 		});
 		
@@ -75,42 +78,47 @@
 			var fields = new Array('email_login', 'password_login');
 			$.each(fields, function(key, value) {
 				document.getElementById(value).style.backgroundColor = '#FFF';
-			});						
-			$.ajax({
-				type	: 'POST',
-				url		: '<?php echo site_url('credentials/signin_user'); ?>',
-				data	: $('#signin_form').serialize(),
-				dataType: 'json',
-				success	: function(data) {
-					switch(data.response) {
-						case 'empty_fields':
-							document.getElementById('alert').innerHTML = 'Please make sure all fields have been filled in.';
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;
-						case 'invalid_fields':
-							document.getElementById('alert').innerHTML = 'Make sure that each field has been correctly entered.';
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;
-						case 'login_error':
-							alert('Login error');
-							break;
-						case 'logged_in':
-							window.location = data.result;
-							break;
-						default:
-							break;
-					};
-				},
-				error	: function(data) {
-					alert("Something went wrong!");
-				}
 			});
+			document.getElementById('signin_loader').style.display = 'block';
+			setTimeout(function () {
+				$.ajax({
+					type	: 'POST',
+					url		: '<?php echo site_url('credentials/signin_user'); ?>',
+					data	: $('#signin_form').serialize(),
+					dataType: 'json',
+					success	: function(data) {
+						switch(data.response) {
+							case 'empty_fields':
+								document.getElementById('alert').innerHTML = 'Please make sure all fields have been filled in.';
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;
+							case 'invalid_fields':
+								document.getElementById('alert').innerHTML = 'Make sure that each field has been correctly entered.';
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;
+							case 'login_error':
+								document.getElementById('alert').innerHTML = 'Sorry we cant find you. Make sure your email and password are correct.';
+								document.getElementById('alert').style.display = 'block';
+								break;
+							case 'logged_in':
+								window.location = data.result;
+								break;
+							default:
+								break;
+						};
+					},
+					error	: function(data) {
+						alert("Something went wrong!");
+					}
+				});
+				document.getElementById('signin_loader').style.display = 'none';				
+			}, 1000);
 			return false;
 		});
 	});
@@ -171,7 +179,8 @@
 				<input type="password" id="password_info" name="password" />
 				<span style="color:white;">Re-type Password</span><br /><br />
 				<input type="password" id="re_password_info" name="re_password" />
-				<input type="submit" class="success button" id="sign_up_btn" value="Get a life" />				
+				<input type="submit" class="success button" id="sign_up_btn" value="Get a life" />
+				<img id="register_loader" style="display:none;" src='<?php echo base_url() . 'images/animators/loader.gif'; ?>' >						
 			</form>
 		</div>
 		<div id="sign_in" class="large-6 columns details">
@@ -182,7 +191,8 @@
 				<input type="text" id="email_login" name="user_email" />
 				<span style="color:white;">Password</span><br /><br />
 				<input type="password" id="password_login" name="password" />
-				<input type="submit" class="default button" id="sign_in_btn" value="Let's go" />				
+				<input type="submit" class="default button" id="sign_in_btn" value="Let's go" />
+				<img id="signin_loader" style="display:none;" src='<?php echo base_url() . 'images/animators/loader.gif'; ?>' >					
 			</form>
 		</div>
 	</div>
