@@ -8,9 +8,6 @@
 		list-style-type: none;
 		margin-left: -10px;
 	}
-	.friend_name {
-		
-	}
 	.friend_greeting {
 		font-size: 13px;
 	}
@@ -23,6 +20,7 @@
 		background: rgba(255, 255, 255, 0.80);
 		border-radius: 5px;
 		padding: 10px;
+		margin-bottom: 15px;
 	}
 	.friend_container {
 		background: rgba(255, 255, 255, 0.80);
@@ -31,12 +29,55 @@
 		margin-bottom: 10px;
 		padding: 10px;
 	}
-	.already_connected{
-		width: 105px;
-		height: 35px;
-		background-color: #F00;
-	}
 </style>
+
+<script>
+	$(document).ready(function () {
+		$.ajax({
+			method	: 'POST',
+			url		: '<?php echo site_url('friends/search_friends'); ?>',
+			data	: '&my_uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&friend=' + '<?php echo $friend_name; ?>',
+			dataType: 'json',
+			success	: function(data) {
+				document.getElementById('friend_finder').innerHTML += data.result;
+			},
+			error	: function(data) {
+				alert('Something went wrong');
+			}
+		});
+	
+		$('body').on('click', '.connect', function (event) {
+			var id = $(this).attr('id');
+			$.ajax({
+				method	: 'POST',
+				url		: '<?php echo site_url('friends/make_friends'); ?>',
+				data	: '&my_uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&friend_uid=' + $(this).attr('id'),
+				dataType: 'json',
+				success	: function(data) {
+					switch(data.response)
+					{
+						case 'request_sent':
+							document.getElementById(id).style.backgroundColor = '#00F';
+							document.getElementById(id).value = 'Request Sent';
+							document.getElementById(id).disabled = 'true';
+							document.getElementById('request_status').innerHTML = '<h6 class="subheader"><b>Your request has been sent!<b></h6>';
+							$('#request_status').foundation('reveal', 'open');
+							break;
+						case 'request_error':
+							alert('Friend could not be added');
+							break;
+						default:
+							break;
+					}
+				},
+				error	: function(data) {
+					alert('Something went wrong');
+				}				
+			});
+		});
+	});
+</script>
+
 
 <link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />
 <script src="<?php echo base_url() . 'js/scroll_top.js'; ?>"></script>
@@ -50,59 +91,14 @@
 	</div>
 	<br />
 	<div class="row">
-		<div class="large-7 columns">
-			<ul class="ul_friends large-12 columns">
-				<li class="friend_container large-12 columns">
-					<div class="large-2 columns"><div class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div></div>
-					<div class="large-7 columns">
-						<div class="friend_name">
-							<span><a href="#"><b>Jessica Tan</b></a></span>
-						</div>
-						<div class="friend_greeting">
-							<p>Hello, I'm, using this app!</p>
-						</div>						
-					</div>
-					<div class="large-3 columns">
-						<input type="submit" class="already_connected" value="Already Friends"
-					</div>
-				</li>
-				<li class="friend_container large-12 columns">
-					<div class="large-2 columns"><div class="friend_profile_pic"><img src="<?php echo base_url() . 'images/default/default_profile.jpg'; ?>" /></div></div>
-					<div class="large-7 columns">
-						<div class="friend_name">
-							<span><a href="#"><b>Jessica Tan</b></a></span>
-						</div>
-						<div class="friend_greeting">
-							<p>Hello, I'm, using this app!</p>
-						</div>						
-					</div>
-					<div class="large-3 columns">
-						<input type="submit" class="small success button" value="Connect"
-					</div>
-				</li>																			
-			</ul>
-		</div>
-		<div id="upcoming_happenings" class="large-4 columns container" style="width: 400px;">
+		<div id="friend_finder" class="nav_left large-7 columns" style="margin-left: -15px;"></div>
+		<div class="nav_right large-4 columns container" style="width: 400px;">
 			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
 	
-	<div id="myModal" class="reveal-modal">
+	<div id="request_status" class="reveal-modal" style="width: 400px; left: 50%; margin-left: -200px; text-align: center;"></div>	
 		
-	</div>	
-		
-	<script>
-	      document.write('<script src=' +
-	      ('__proto__' in {} ? '<?php echo base_url() . 'js/vendor/zepto'; ?>' : '<?php echo base_url() . 'js/vendor/jquery'; ?>') +
-	      '.js><\/script>')
-	</script>
-	
-    <script src="<?php echo base_url() . 'js/fdn/foundation.js'; ?>"></script>  
-    <script src="<?php echo base_url() . 'js/fdn/foundation.magellan.js'; ?>"></script>
-    <script src="<?php echo base_url() . 'js/fdn/foundation.reveal.js'; ?>"></script>
-	    
-    <script>
-        $(document).foundation();
-    </script>	
-	
+    <?php include('application/views/common/foundation_js_dep.php'); ?>	
+
 </body>

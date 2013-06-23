@@ -54,17 +54,25 @@ class Form_Processor extends CI_Model
 		{
 			switch ($field)
 			{
+				case 'email_settings_name':
 				case 'user_email':
 					if (!filter_var($details[$field], FILTER_VALIDATE_EMAIL))
 					{
 						$this->valid_fields[$field] = $field_array['id'][$field];
 					}					
 					break;
+				case 'current_pw_settings_name':
+				case 'new_pw_settings_name':
+				case 're_pw_settings_name':
 				case 'password':
 					if (!preg_match('/^[A-Za-z0-9_-]{8,20}$/', $details[$field]))
 					{
 						$this->valid_fields[$field] = $field_array['id'][$field];
 					}
+					break;
+				case 'event_date_name':
+					break;
+				case 'event_time_name':
 					break;
 				default:
 					if (!preg_match('/^[A-Z]/i', $details[$field]))

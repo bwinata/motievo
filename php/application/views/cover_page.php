@@ -14,8 +14,9 @@
 <style type="text/css">
 	body {
 		height: 100%;
-		background: url(<?php echo base_url() . 'images/blurred_lines.jpg'; ?>);
+		background: url(<?php echo base_url() . 'images/Optimized-bondi.jpg'; ?>);
 		background-size: cover;
+		background-attachment: fixed;
 	}
 	#interest_box {
 		height: auto;
@@ -32,41 +33,45 @@
 <script>
 	$(document).ready(function () {				
 		$('#interest_btn').click(function () {
-			$.ajax({
-				type	: 'POST',
-				url		: '<?php echo site_url('launch/gauge_interest'); ?>',
-				data	: $('#interest_form').serialize(),
-				dataType: 'json',
-				success	: function(data) {
-					switch(data.response) {
-						case 'empty_fields':
-							document.getElementById('alert').innerHTML = 'Please enter your email address';
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;
-						case 'invalid_fields':
-							document.getElementById('alert').innerHTML = 'Make sure your address is correct';
-							document.getElementById('alert').style.display = 'block';
-	                        $.each(data.result, function(k, v) {
-	                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
-	                        });
-							break;
-						case 'email_taken':
-							$('#email_taken_notification').foundation('reveal', 'open');					
-							break;
-						case 'registered':
-							$('#registered_notification').foundation('reveal', 'open');
-							break;
-						default:
-							break;
-					};
-				},
-				error	: function(data) {
-					alert("Something went wrong!");
-				}
-			});
+			document.getElementById('loader').style.display = 'block';
+			setTimeout(function () {
+				$.ajax({
+					type	: 'POST',
+					url		: '<?php echo site_url('launch/gauge_interest'); ?>',
+					data	: $('#interest_form').serialize(),
+					dataType: 'json',
+					success	: function(data) {
+						switch(data.response) {
+							case 'empty_fields':
+								document.getElementById('alert').innerHTML = 'Please enter your email address';
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;
+							case 'invalid_fields':
+								document.getElementById('alert').innerHTML = 'Make sure your address is correct';
+								document.getElementById('alert').style.display = 'block';
+		                        $.each(data.result, function(k, v) {
+		                            document.getElementById(v).style.backgroundColor = '#F9B9BF';
+		                        });
+								break;
+							case 'email_taken':
+								$('#email_taken_notification').foundation('reveal', 'open');					
+								break;
+							case 'registered':
+								$('#registered_notification').foundation('reveal', 'open');
+								break;
+							default:
+								break;
+						};
+					},
+					error	: function(data) {
+						alert("Something went wrong!");
+					}
+				});
+				document.getElementById('loader').style.display = 'none';			
+			}, 1000);
 			return false;
 		});
 	});
@@ -86,6 +91,7 @@
 			<form id="interest_form">
 				<input type="text" id="email" name="user_email" maxlenght="40" />
 				<input type="submit" id="interest_btn" class="button success" value="I'm interested" />
+				<img id="loader" style="display:none;" src='<?php echo base_url() . 'images/animators/loader.gif'; ?>' >
 			</form>
 		</div>	
 	</div>

@@ -56,4 +56,6 @@
 
 		</div>	
 	</div> 	
+
+	<?php include('application/views/common/foundation_js_dep.php'); ?>	
 </body>
