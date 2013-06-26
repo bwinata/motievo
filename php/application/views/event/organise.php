@@ -44,6 +44,7 @@
 <script>
 	$(document).ready(function () {
 		generate_maps('map_container');
+		
 		$.ajax({
 			method	: 'POST',
 			url		: '<?php echo site_url('friends/fetch_friends_list'); ?>',
