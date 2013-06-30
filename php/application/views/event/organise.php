@@ -38,8 +38,13 @@
 	}
 </style>
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script src="<?php echo base_url() . 'js/google_location_finder.js'; ?>"></script>
+
 <script>
 	$(document).ready(function () {
+		generate_maps('map_container');
+		
 		$.ajax({
 			method	: 'POST',
 			url		: '<?php echo site_url('friends/fetch_friends_list'); ?>',
@@ -73,7 +78,7 @@
 						document.getElementById('preview_event_heading').style.display = 'block';
 						
 						document.getElementById('preview_title').innerHTML = values['event_title_name'];
-						document.getElementById('preview_friend').innerHTML = 'with s' + values['event_friend_name'];
+						document.getElementById('preview_friend').innerHTML = 'with ' + values['event_friend_name'];
 						document.getElementById('preview_date').innerHTML = values['event_date_name'];
 						document.getElementById('preview_time').innerHTML = values['event_time_name'];
 						document.getElementById('preview_location').innerHTML = values['event_location_name'];
@@ -188,6 +193,7 @@
 					<input type="text" style="border: solid;" id="event_time" class="input_fields" name="event_time_name" placeholder="What time is it on?" />		
 					<h5>Location</h5>
 					<input type="text" style="border: solid;" id="event_location" class="input_fields" name="event_location_name" placeholder="Where are we going?" />
+					<div id="map_container" style="width: 100%; height: 375px; background: black;"></div>
 					<h5>Meeting Point</h5>
 					<input type="text" style="border: solid;" id="event_meeting_point" class="input_fields" name="event_meeting_point_name" placeholder="Where are we meeting?" />				
 					<h5>Details</h5>
@@ -199,7 +205,7 @@
 					<h5 id="preview_time"></h5>
 					<hr></hr>				
 					<h4 id="preview_location" class="subheader"></h4>
-					<iframe width="525" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=surry+hills,sydney&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=35.547176,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=Surry+Hills+New+South+Wales,+Australia&amp;ll=-33.890647,151.212925&amp;spn=0.036408,0.077162&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+					<div id="preview_map_container" style="width: 100%; height: 375px; background: black;"></div>
 					<hr></hr>
 					<h5>Meeting Point:</h5>
 					<p id="preview_meeting_point"></p>
@@ -210,7 +216,7 @@
 				</div>
 				<input type="submit" id="event_submit_btn" class="default small button" name="event_submit_btn_name" value="Make it happen" />
 				<input type="submit" id="event_preview_btn" class="default small success button" name="event_preview_btn_name" value="Preview" />			
-				<img id="loader" style="display:none;" src='<?php echo base_url() . 'images/animators/loader-white.gif'; ?>' >				
+				<img id="loader" style="display:none;" src='<?php echo base_url() . 'images/animators/loader-white.gif'; ?>' >							
 			</div>				
 		</div>
 		<div class="nav_right large-4 columns container" style="width: 400px;">
