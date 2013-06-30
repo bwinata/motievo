@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Get a life! Register your interest now." />
 	<title>Get a life!</title>
 	
 	<link rel="stylesheet" href="<?php echo base_url() . 'css/fdn/foundation.css'; ?>" />
