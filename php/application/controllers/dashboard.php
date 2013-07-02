@@ -54,6 +54,21 @@ class Dashboard extends CI_Controller
 			header("Location:".site_url('main_bd/cover'));	
 		}		
 	}
+	
+	public function conversations ()
+	{
+		if ($this->Validation->check_login())
+		{
+			$data['page_title'] = 'Barry Winata | Conversations';
+			$this->load->view('common/header', $data);
+			$this->load->view('friends/conversations');
+			$this->load->view('common/footer');
+		}
+		else 
+		{
+			header("Location:".site_url('main_bd/cover'));	
+		}		
+	}
 		
 	/* Handlers */
 	public function get_user_info ()

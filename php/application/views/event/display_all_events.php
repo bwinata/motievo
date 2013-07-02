@@ -156,5 +156,6 @@
 	    
     <script>$(document).foundation();</script>
 
-	
+	<?php include('application/views/common/foundation_js_dep.php'); ?>
+
 </body>
