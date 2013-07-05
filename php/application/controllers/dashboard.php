@@ -77,6 +77,18 @@ class Dashboard extends CI_Controller
 		echo json_encode($this->Dashboard_Content->fetch_content($user_details));
 	}
 	
+	public function fetch_conversation ()
+	{
+		$this->load->model('Conversations', '', TRUE);
+		$message_details = $this->Details->get_details();
+		echo json_encode($this->Conversations->fetch_content($message_details));
+	}
+	
+	public function post_conversation ()
+	{
+		$this->load->model('Conversations', '', TRUE);
+		$message_details = $this->Details->get_details();
+		echo json_encode($this->Conversations->post_content($message_details));
+	}	
 }
-
 ?>

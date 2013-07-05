@@ -44,41 +44,38 @@
 	}
 
 	$(document).ready(function () {
-		$('#notification').show();
-		
-		$.ajax({
-			type	: 'POST',
-			url		: '<?php echo site_url('dashboard/get_user_info'); ?>',
-			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
-			dataType: 'json',
-			success	: function(data) {
-				switch(data.response) {
-					case 'data_retrieved':
-						display_content(data.result);
-						break;
-					default:
-						break;
-				}
-			},
-			error	: function(data) {
-				alert('Something went wrong');
-			}
-		});
-	});
-</script>
-
-<script>
-	$(document).ready(function () {
 		$('.img').click(function () {
 			document.getElementById('myModal').innerHTML = "<img src=" + $(this).attr('id') + " " +  "/ >";
 		});
 		
 		$('#create_new_msg').click(function () {
-			$('#new_message_container').foundation('reveal', 'open');			
+			$('#new_message_container').foundation('reveal', 'open');
 		});
 		
 		$('#new_convo_btn').click(function () {
 			document.getElementById('loader').style.display = 'block';
+			$.ajax({
+				method	: 'POST',
+				url		: '<?php echo site_url('dashboard/post_conversation'); ?>',
+				data	: $('#new_convo_form').serialize() + '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
+				dataType: 'json',
+				success	: function(data) {
+					switch(data.response) {
+						case 'slot_opened':
+							location.reload();
+							break;
+						case 'friend_error':
+						case 'slot_taken':
+							alert(data.result);
+							break;
+					}
+				},
+				error	: function(data) {
+					alert('Something went wrong');
+				}
+			});
+			document.getElementById('loader').style.display = 'none';
+			return false;
 		});
 		
 		$.ajax({
@@ -95,6 +92,24 @@
 				});
 			},
 			error	: function(data) {
+			}
+		});
+		
+		$.ajax({
+			type	: 'POST',
+			url		: '<?php echo site_url('dashboard/fetch_conversation'); ?>',
+			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
+			dataType: 'json',
+			success	: function(data) {
+				switch(data.response) {
+					case 'retrieved':
+						display_content(data.result);
+						break;
+					
+				}
+			},
+			error	: function(data) {
+				alert('Something went wrong');
 			}
 		});		
 		
@@ -128,8 +143,10 @@
 	
     <div id="new_message_container" class="reveal-modal" style="width: 600px; left: 50%; margin-left: -300px;">
       <h5>New Conversation</h5>
-      <input type="text" id="message_friend_field" name="message_friend_field_name" placeholder="Enter friend's name">
-      <textarea id="new_convo_textarea" style="height: 100px;" placeholder="New message..."></textarea>
+      <form id="new_convo_form">
+			<input type="text" id="message_friend_field" name="message_friend_field_name" placeholder="Enter friend's name">
+      		<textarea id="new_convo_textarea" name="new_convo_textarea_name" style="height: 100px;" placeholder="New message..."></textarea>	
+      </form>
       <input type="submit" id="new_convo_btn" class="tiny default button" style="float: left; margin-right: 10px;" value="Send">
       <img id="loader" style="display:none;" src='<?php echo base_url() . 'images/animators/loader-white.gif'; ?>' >
       <a class="close-reveal-modal">&#215;</a>
