@@ -80,7 +80,7 @@ class Dashboard extends CI_Controller
 	public function fetch_conversation ()
 	{
 		$this->load->model('Conversations', '', TRUE);
-		$message_details = $this->Details->get_details();
+		$message_details = $this->Details->retrieve_get_details();
 		echo json_encode($this->Conversations->fetch_content($message_details));
 	}
 	
@@ -89,6 +89,14 @@ class Dashboard extends CI_Controller
 		$this->load->model('Conversations', '', TRUE);
 		$message_details = $this->Details->get_details();
 		echo json_encode($this->Conversations->post_content($message_details));
-	}	
+	}
+	
+	public function fetch_convo_messages ()
+	{
+		$this->load->model('Conversations', '', TRUE);
+		$message_details = $this->Details->retrieve_get_details();
+		echo json_encode($this->Conversations->fetch_messages($message_details));		
+	}
+	
 }
 ?>

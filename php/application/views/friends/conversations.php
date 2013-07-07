@@ -26,6 +26,10 @@
 		width: 20px;
 		height: 1px;
 	}
+	.messages_expand_btn:hover {
+		color: #AAA;
+		cursor: pointer;
+	}	
 </style>
 
 <style type="text/css">
@@ -39,8 +43,10 @@
 </style>
 
 <script>
-	function display_content(content) {
-		document.getElementById('my_happenings').innerHTML += content['my_happenings'];	
+	function display_content(id, content) {
+		$.each(content, function(k,v){
+			document.getElementById(id).innerHTML += v;
+		});
 	}
 
 	$(document).ready(function () {
@@ -50,6 +56,31 @@
 		
 		$('#create_new_msg').click(function () {
 			$('#new_message_container').foundation('reveal', 'open');
+		});
+		
+		$('body').on('click', '.messages_expand_btn', function (event) {
+			if (document.getElementById('messages_container').style.display == 'none') {
+				document.getElementById('loader_' + $(this).parent().attr('id')).style.display = 'block';
+				$.ajax({
+					method	: 'GET',
+					url		: '<?php echo site_url('dashboard/fetch_convo_messages'); ?>',
+					data	: '&c_id=' + $(this).parent().attr('id'),
+					dataType: 'json',
+					success	: function(data) {
+						display_content('messages_container', data.result);
+						document.getElementById('messages_container').style.display = 'block';
+						
+					},
+					error	: function(data) {
+						alert('Something went wrong');
+					}
+				});
+				document.getElementById('loader_' + $(this).parent().attr('id')).style.display = 'none';
+				return false;
+			} else {
+				document.getElementById('messages_container').style.display = 'none';
+				document.getElementById('messages_container').innerHTML = '';
+			}
 		});
 		
 		$('#new_convo_btn').click(function () {
@@ -79,7 +110,7 @@
 		});
 		
 		$.ajax({
-			method	: 'POST',
+			method	: 'GET',
 			url		: '<?php echo site_url('friends/fetch_friends_list'); ?>',
 			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
 			dataType: 'json',
@@ -96,16 +127,18 @@
 		});
 		
 		$.ajax({
-			type	: 'POST',
+			type	: 'GET',
 			url		: '<?php echo site_url('dashboard/fetch_conversation'); ?>',
 			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
 			dataType: 'json',
 			success	: function(data) {
 				switch(data.response) {
 					case 'retrieved':
-						display_content(data.result);
+						display_content('my_conversations', data.result);
 						break;
-					
+					case 'no_convos':
+						document.getElementById('my_conversations').innerHTML += data.result;
+						break;
 				}
 			},
 			error	: function(data) {
@@ -134,13 +167,9 @@
 	</div>
 	<br />
 	<div class="row">
-		<div id="my_happenings" class="nav_left large-7 columns" style="margin-left: -15px;">
-		</div>
-		<div class="nav_right large-4 columns container" style="width: 400px;">
-			<?php include('application/views/common/upcoming_happenings.php'); ?>
-		</div>			
+		<div id="my_conversations" class="nav_left large-7 columns" style="margin-left: -15px;"></div>		
+		<div class="nav_right large-4 columns container" style="width: 400px;"><?php include('application/views/common/upcoming_happenings.php'); ?></div>			
 	</div>
-	
     <div id="new_message_container" class="reveal-modal" style="width: 600px; left: 50%; margin-left: -300px;">
       <h5>New Conversation</h5>
       <form id="new_convo_form">

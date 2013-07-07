@@ -6,6 +6,10 @@ class Details extends CI_Model
 	{
 		return array_map('trim', $_POST);
 	}
+	public function retrieve_get_details ()
+	{
+		return array_map('trim', $_GET);
+	}
 }
 
 
