@@ -29,6 +29,19 @@
 			window.location = '<?php echo site_url('friends/find'); ?>'  + '?search=' + document.getElementById('search_friend').value;
 			return false;
 		});
+		
+		$.ajax({
+			type	: 'GET',
+			url		: '<?php echo site_url('dashboard/get_user_info'); ?>',
+			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
+			dataType: 'json',
+			success	: function(data) {
+				document.getElementById('user').innerHTML = data.result['full_name'];
+			},
+			error	: function(data) {
+				alert('Something went wrong');
+			}
+		});
 	});
 </script>
 
@@ -51,12 +64,12 @@
     			<li class="name"><div class="inline_seperator"></div></li>
     			<li class="divider hide-for-small"></li>
     			<li class="name"><div class="inline_seperator"></div></li>
-    			<li class="name"><a href="#" data-dropdown="drop1">Barry Winata<span data-dropdown="drop1"></span></a></li>
+    			<li class="name"><a href="#" id="user" data-dropdown="drop1">Barry Winata<span data-dropdown="drop1"></span></a></li>
     			<li class="name"><div class="inline_seperator"></div></li>    			    			
     			<li class="divider hide-for-small"></li>
     			<li class="name"><a href="<?php echo site_url('dashboard/me'); ?>">Dashboard</a></li>
     			<li class="divider hide-for-small"></li>
-    			<li class="name"><a href="#">Logout</a></li>
+    			<li class="name"><a href="<?php echo site_url('credentials/logout'); ?>">Logout</a></li>
     		</ul>
     	</section>
     </nav>

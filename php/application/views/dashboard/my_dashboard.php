@@ -48,7 +48,7 @@
 		$('#notification').show();
 		
 		$.ajax({
-			type	: 'POST',
+			type	: 'GET',
 			url		: '<?php echo site_url('dashboard/get_user_info'); ?>',
 			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
 			dataType: 'json',

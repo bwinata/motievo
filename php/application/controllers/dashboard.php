@@ -73,7 +73,7 @@ class Dashboard extends CI_Controller
 	/* Handlers */
 	public function get_user_info ()
 	{
-		$user_details = $this->Details->get_details();
+		$user_details = $this->Details->retrieve_get_details();
 		echo json_encode($this->Dashboard_Content->fetch_content($user_details));
 	}
 	
@@ -97,6 +97,5 @@ class Dashboard extends CI_Controller
 		$message_details = $this->Details->retrieve_get_details();
 		echo json_encode($this->Conversations->fetch_messages($message_details));		
 	}
-	
 }
 ?>

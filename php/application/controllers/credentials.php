@@ -76,6 +76,13 @@ class Credentials extends CI_Controller
 		$this->Register->activate_user();
 	}
 	
+	public function logout ()
+	{
+		$this->input->set_cookie('_u_', '', 0, '.localhost', '/', '');
+		$this->input->set_cookie('_sess_', '', 0, '.localhost', '/', '');
+		header("Location:".site_url('main_bd/cover'));
+	}
+	
 	/* ============================================================== */
 	/* PRIVATE FUNCTIONS */
 	/* ============================================================== */
