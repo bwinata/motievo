@@ -63,21 +63,23 @@
 			var message_container_id = 'message_container_' + container_id; 
 			if (document.getElementById(message_container_id).style.display == 'none') {
 				document.getElementById('loader_' + container_id).style.display = 'block';
-				$.ajax({
-					method	: 'GET',
-					url		: '<?php echo site_url('dashboard/fetch_convo_messages'); ?>',
-					data	: '&c_id=' + $(this).parent().attr('id'),
-					dataType: 'json',
-					success	: function(data) {
-						display_content(message_container_id, data.result);
-						document.getElementById(message_container_id).style.display = 'block';
-						
-					},
-					error	: function(data) {
-						alert('Something went wrong');
-					}
-				});
-				document.getElementById('loader_' + container_id).style.display = 'none';
+				setTimeout(function () {
+					$.ajax({
+						method	: 'GET',
+						url		: '<?php echo site_url('dashboard/fetch_convo_messages'); ?>',
+						data	: '&c_id=' + container_id,
+						dataType: 'json',
+						success	: function(data) {
+							display_content(message_container_id, data.result);
+							document.getElementById(message_container_id).style.display = 'block';
+							
+						},
+						error	: function(data) {
+							alert('Something went wrong');
+						}
+					});
+					document.getElementById('loader_' + container_id).style.display = 'none';
+				}, 1000);
 				return false;
 			} else {
 				document.getElementById(message_container_id).style.display = 'none';
@@ -88,21 +90,24 @@
 		$('body').on('click', '.send_msg_btn', function (event) {
 			/* Get grandfather id */
 			var send_msg_id = 'send_msg_id_' + $(this).parents().eq(1).attr('id');
-			var text = document.getElementById(send_msg_id).value;
-			
-			$.ajax({
-				method	: 'POST',
-				url		: '<?php echo site_url('dashboard/post_message'); ?>',
-				data	: '&c_id=' + $(this).parents().eq(1).attr('id'),
-				dataType: 'json',
-				success	: function(data) {
-					
-				},
-				error	: function(data) {
-					alert('Something went wrong');
-				}
-			});
-			
+			var message_container_id = 'message_container_' + $(this).parents().eq(1).attr('id');
+			if (document.getElementById(send_msg_id).value.length > 0) {
+				var text = document.getElementById(send_msg_id).value;
+				$.ajax({
+					method	: 'POST',
+					url		: '<?php echo site_url('dashboard/post_message'); ?>',
+					data	: '&c_id=' + $(this).parents().eq(1).attr('id') + '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>' + '&msg=' + text,
+					dataType: 'json',
+					success	: function(data) {
+						document.getElementById(send_msg_id).value = '';
+						document.getElementById()
+						document.getElementById(message_container_id).innerHTML += data.result;
+					},
+					error	: function(data) {
+						alert('Something went wrong');
+					}
+				});
+			}
 		});
 		
 		$('#new_convo_btn').click(function () {
@@ -166,7 +171,7 @@
 			error	: function(data) {
 				alert('Something went wrong');
 			}
-		});		
+		});
 		
 	});
 </script>

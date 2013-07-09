@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Get a life! Register your interest now." />
 	<title>Get a life!</title>
 	
@@ -29,6 +27,19 @@
 		margin-left: -200px;
 		border-radius: 5px;
 	}
+	#footer {
+	    color: #FFFFFF;
+	    background: rgba(0, 0, 0, 0.8);
+		width:100%;
+		height:30px;
+		position:fixed;
+		bottom:0;
+		left:0;
+	}
+	#footer a {
+	    color: #FFFFFF;
+	    font-size: 14px;
+	}		
 </style>
 
 <script>
@@ -103,7 +114,6 @@
       	 <br /><br />Catch ya soon!</p>
       <a class="close-reveal-modal">&#215;</a>
     </div>
-    
     <div id="email_taken_notification" class="reveal-modal" style="width: 600px; left: 50%; margin-left: -300px;">
       <h2>Woops!</h2>
       <p>Seems like this email is already taken. If you've already registered, thanks again! Remember, we'll keep you posted on our happenings! Stay tuned.</p>
@@ -111,6 +121,11 @@
     </div>    
     
     <?php include('application/views/common/foundation_js_dep.php'); ?>	
-	
 </body>
+
+<div id="footer">
+	<div class="row">
+		<p style="text-align: center;">Born in Sydney, Australia</p>		
+	</div>
+</div>
 </html>

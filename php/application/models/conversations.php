@@ -6,16 +6,10 @@ class Conversations extends CI_Model
 {
 	public function fetch_content ($details)
 	{
-		$loader_link = base_url() . 'images/animators/loader-white.gif';
-									   
-		$available = $this->db->query("SELECT conversation_identifiers.id, 
-											   conversation_identifiers.user_id, 
-											   conversation_identifiers.friend_id,
-											   conversations.date_time,
-											   conversations.message FROM 
-											   conversation_identifiers INNER JOIN conversations ON id = convo_id WHERE 
-											   (conversations.date_time = (SELECT MAX(date_time) FROM conversations) OR
-											   (conversation_identifiers.user_id = '$details[uid]' OR conversation_identifiers.friend_id = '$details[uid]'))");									   
+		$loader_link = base_url() . 'images/animators/loader-white.gif';								   
+		
+		$available = $this->db->query("SELECT id, user_id, friend_id FROM conversation_identifiers WHERE
+									  (user_id = '$details[uid]' OR friend_id = '$details[uid]')");
 									   
 		if ($available->num_rows() > 0)
 		{
@@ -33,24 +27,29 @@ class Conversations extends CI_Model
 								  
 				if ($friend_details->num_rows() == 1)
 				{
+					$id = $available->row($i)->id;
+					$output = $this->db->query("SELECT message, date_time FROM conversations
+									  			WHERE (date_time = (SELECT MAX(date_time) FROM conversations) 
+									  			AND convo_id = '$id')");
+									  
 					$name = $friend_details->row()->full_name;
 					$username = $friend_details->row()->username;
-					$date_time = $available->row($i)->date_time;
-					$message = $this->truncate_string($available->row($i)->message);
-					$id = $available->row($i)->id;
+					//$date_time = $output->row()->date_time;
+					//$message = $this->truncate_string($output->row()->message);
+					
 					$loader_id = 'loader_'.$id;
 					$message_container_id = 'message_container_'.$id;
 					$friend_array[$i] = "<div id=$id class='container large-12 columns' style='margin-bottom: 15px;'>
 											<div class='large-12 columns' style='margin-left: -15px;'>
 												<span style='margin-top: -10px; font-size: 16px;'><a href='#'><b>$name</b></a></span><br />
 												<span style='margin-top: -10px; font-size: 13px;'><b>$username</b></span><br />
-												<span class='subheader' style='font-size: 12px;'>Last message received on $date_time</span><br />
-												<span style='font-size: 13px;'>$message</span>		
+												<span class='subheader' style='font-size: 12px;'>Last message received on </span><br />
+												<span style='font-size: 13px;'></span>		
 											</div>				
 											<hr style='margin-bottom: 0px;'></hr>
 											<img id=$loader_id style='display:none; margin-left: 47%;' src=$loader_link>				
 											<div id=$message_container_id style='margin-top: 10px; display: none;'></div>																	
-											<span class='messages_expand_btn' style='font-size: 11px; margin-left: 42%;'>Messages</span>					
+											<span class='messages_expand_btn' style='font-size: 11px; margin-left: 45%;'>Messages</span>					
 										</div>";
 				}
 									
@@ -88,16 +87,10 @@ class Conversations extends CI_Model
 				
 				if ($i == $message->num_rows() - 1)
 				{
-					$send_msg_id = 'send_msg_id_' . $details['c_id'];
-					$message_box = "<input type='text' id=$send_msg_id class='comment_input_field' name='comment_input_field_name' placeholder='Type a quick message'>
-								   <input type='submit' style='float: right;' class='send_msg_btn tiny default button' value='Send'>";
+					//$send_msg_id = 'send_msg_id_' . $details['c_id'];
+					$message_box = $this->get_message_box($details['c_id']);
 				}
-				$messages_array[$i] = "<div class='message' style='margin-left: -15px;'>
-									  	<div class='large-1 columns'><div class='comment_profile_pic' style='width: 40px; height: 40px; background: black;'></div></div>
-									  	<div class='large-11 columns'><p class='message_text' style='font-size: 12px; margin-bottom: -0px;'><b>$name</b></p></div>
-									  	<div class='large-11 columns'><p class='message_text' style='font-size: 13px;'>$msg</div>
-									  	<br />
-									  </div>" . $message_box;
+				$messages_array[$i] = $this->get_each_message_box($name, $msg) . $message_box;
 			}	
 		}
 		else 
@@ -145,6 +138,43 @@ class Conversations extends CI_Model
 		}
 	}
 
+	public function post_message ($details)
+	{
+		/* Check if conversation exists */
+		$available = $this->db->query("SELECT user_id, friend_id FROM conversation_identifiers WHERE id = '$details[c_id]'");
+		if ($available->num_rows() == 1)
+		{
+			$user_id = $available->row()->user_id;
+			$friend_id = $available->row()->friend_id;
+			$this->db->query("INSERT INTO conversations (convo_id, user_id, friend_id, message, date_time, sender)
+							  VALUES ('$details[c_id]', '$user_id', '$friend_id', '$details[msg]', NOW(), '$details[uid]')");
+			
+			if ($this->db->affected_rows() == 1)
+			{
+				return array('response' => 'message_posted', 'result' => $this->get_each_message_box('Barry', $details['msg']));
+			}
+			else 
+			{
+				return array('response' => 'error');	
+			}
+		}
+		else
+		{
+			return array('response' => 'error');
+		}
+	}
+
+	public function test_query ()
+	{
+		$output = $this->db->query("SELECT message, date_time FROM conversations
+						  			WHERE (date_time = (SELECT MAX(date_time) FROM conversations) 
+						  			AND convo_id = '4ee67b78577824e944379ac321783a497f174c83')");
+		
+		echo 'hello world';
+		echo $output->row()->message;
+		echo $output->row()->date_time;
+	}
+
 	private function truncate_string ($string)
 	{
 		$new_string = '';
@@ -159,6 +189,23 @@ class Conversations extends CI_Model
 			return $new_string;
 		}
 		return $string;
+	}
+	
+	private function get_message_box ($convo_id)
+	{
+		$send_msg_id = 'send_msg_id_' . $convo_id;
+		return "<input type='text' id=$send_msg_id class='comment_input_field' name='comment_input_field_name' placeholder='Type a quick message'>
+				<input type='submit' style='float: right;' class='send_msg_btn tiny default button' value='Send'>";		
+	}
+	
+	private function get_each_message_box ($name, $msg)
+	{
+		return "<div class='message' style='margin-left: -15px;'>
+				  	<div class='large-1 columns'><div class='comment_profile_pic' style='width: 40px; height: 40px; background: black;'></div></div>
+				  	<div class='large-11 columns'><p class='message_text' style='font-size: 12px; margin-bottom: -0px;'><b>$name</b></p></div>
+				  	<div class='large-11 columns'><p class='message_text' style='font-size: 13px;'>$msg</div>
+				  	<br />
+				</div>";		
 	}
 	
 }
