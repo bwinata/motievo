@@ -4,9 +4,9 @@
 	    background: rgba(0, 0, 0, 0.8);
 	    margin-top: 75px;
 	    padding: 5px;
-		position:fixed;
+		position:relative;
 		bottom:0em;
-		left:0;	
+		left:0;
 		width: 100%;   
 	}
 	#footer a {

@@ -14,21 +14,22 @@ class Event_Content extends CI_Model
 		$friend_found = $this->db->query("SELECT user_identifier FROM registration WHERE (full_name = '$event_details[event_friend_name]' OR username = '$event_details[event_friend_name]')");
 		if ($friend_found->num_rows() == 1)
 		{
+			$datetime = DateTime::createFromFormat("m/d/Y @ H:i a", $event_details['event_date_name']);
+			$format_datetime = $datetime->format("Y-m-d H:i:s");
+			
 			$friend_id = $friend_found->row()->user_identifier;
 			$this->db->query("INSERT INTO events (event_identifier,
 												  user_identifier,
 												  title,
 												  friend_identifier,
 												  date,
-												  time,
 												  location,
 												  meeting_point,
 												  details) VALUES ('$event_identifier',
 												  				   '$event_details[uid]',
 												  				   '$event_details[event_title_name]',
 												  				   '$friend_id',
-												  				   '$event_details[event_date_name]',
-												  				   '$event_details[event_time_name]',
+												  				   '$format_datetime',
 												  				   '$event_details[event_location_name]',
 												  				   '$event_details[event_meeting_point_name]',
 												  				   '$event_details[event_description_name]')");

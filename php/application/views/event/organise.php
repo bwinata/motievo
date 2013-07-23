@@ -4,6 +4,9 @@
 		background: rgba(0, 0, 0, 0.60);
 		border-radius: 5px;
 	}
+	#ui-datepicker-div{
+	 font-size: 14px;
+	}		
 	.nav_left, .nav_right {
 		position: relative;top: 20px;
 	}
@@ -40,13 +43,18 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <script src="<?php echo base_url() . 'js/google_location_finder.js'; ?>"></script>
+<script src="<?php echo base_url() . 'js/jquery-ui-timepicker-addon.js'; ?>"></script>
 
 <script>
 	$(document).ready(function () {
 		generate_maps('map_container');
+		$('#event_date').datetimepicker({
+			timeFormat: 'hh:mm tt',
+			separator: ' @ ',		
+		});
 		
 		$.ajax({
-			method	: 'POST',
+			method	: 'GET',
 			url		: '<?php echo site_url('friends/fetch_friends_list'); ?>',
 			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
 			dataType: 'json',
@@ -130,7 +138,8 @@
 								highlight_error_fields(data.result);
 								break;
 							case 'event_organised':
-								$('#event_created_notification').foundation('reveal', 'open');
+								window.location = '<?php echo site_url('event/all'); ?>';
+								//$('#event_created_notification').foundation('reveal', 'open');
 								break;
 							case 'event_error':
 								alert(data.result);
@@ -186,11 +195,9 @@
 					<h5>Happening</h5>
 					<input type="text" style="border: solid;" id="event_title" class="input_fields" name="event_title_name" placeholder="What are we calling this?" />
 					<h5>Friend</h5>
-					<input type="text" style="border: solid;" id="event_friend" class="input_fields" name="event_friend_name" placeholder="With who? Full name or Username" />
-					<h5>Date</h5>
+					<input type="text" style="border: solid;" id="event_friend" class="input_fields" name="event_friend_name" placeholder="With who? Full name or Username"/>
+					<h5>Date & Time</h5>
 					<input type="text" style="border: solid;" id="event_date" class="input_fields" name="event_date_name" placeholder="What date is it on?" />
-					<h5>Time</h5>
-					<input type="text" style="border: solid;" id="event_time" class="input_fields" name="event_time_name" placeholder="What time is it on?" />		
 					<h5>Location</h5>
 					<input type="text" style="border: solid;" id="event_location" class="input_fields" name="event_location_name" placeholder="Where are we going?" />
 					<div id="map_container" style="width: 100%; height: 375px; background: black;"></div>

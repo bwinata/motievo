@@ -160,8 +160,8 @@ class Search extends CI_Model
 				
 				if ($output->num_rows() == 1)
 				{
-					$total_list[$j] = $output->row()->full_name;
-					$total_list[$j + 1] = $output->row()->username;
+					$full_entry = $output->row()->full_name . ' | ' . $output->row()->username;
+					$total_list[$j] = $full_entry;
 					$j++;
 				}
 				else 

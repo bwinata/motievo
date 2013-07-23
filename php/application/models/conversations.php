@@ -20,7 +20,7 @@ class Conversations extends CI_Model
 					$friend_id = $available->row($i)->friend_id;
 				else 
 					/* Retrieve friend from user_id */
-					$friend_id = $available->row($i)->user_id;					
+					$friend_id = $available->row($i)->user_id;
 				
 				$friend_details = $this->db->query("SELECT full_name, username FROM registration
 								  WHERE user_identifier = '$friend_id'");
@@ -29,13 +29,12 @@ class Conversations extends CI_Model
 				{
 					$id = $available->row($i)->id;
 					$output = $this->db->query("SELECT message, date_time FROM conversations
-									  			WHERE (date_time = (SELECT MAX(date_time) FROM conversations) 
-									  			AND convo_id = '$id')");
+									  			WHERE (date_time = (SELECT MAX(date_time) FROM conversations WHERE convo_id = '$id'))");
 									  
 					$name = $friend_details->row()->full_name;
 					$username = $friend_details->row()->username;
-					//$date_time = $output->row()->date_time;
-					//$message = $this->truncate_string($output->row()->message);
+					$date_time = $output->row()->date_time;
+					$message = $this->truncate_string($output->row()->message);
 					
 					$loader_id = 'loader_'.$id;
 					$message_container_id = 'message_container_'.$id;
@@ -43,8 +42,8 @@ class Conversations extends CI_Model
 											<div class='large-12 columns' style='margin-left: -15px;'>
 												<span style='margin-top: -10px; font-size: 16px;'><a href='#'><b>$name</b></a></span><br />
 												<span style='margin-top: -10px; font-size: 13px;'><b>$username</b></span><br />
-												<span class='subheader' style='font-size: 12px;'>Last message received on </span><br />
-												<span style='font-size: 13px;'></span>		
+												<span class='subheader' style='font-size: 12px;'>Last message received on $date_time </span><br />
+												<span style='font-size: 13px;'>$message</span>		
 											</div>				
 											<hr style='margin-bottom: 0px;'></hr>
 											<img id=$loader_id style='display:none; margin-left: 47%;' src=$loader_link>				
@@ -167,8 +166,7 @@ class Conversations extends CI_Model
 	public function test_query ()
 	{
 		$output = $this->db->query("SELECT message, date_time FROM conversations
-						  			WHERE (date_time = (SELECT MAX(date_time) FROM conversations) 
-						  			AND convo_id = '4ee67b78577824e944379ac321783a497f174c83')");
+						  			WHERE (date_time = (SELECT MAX(date_time) FROM conversations WHERE convo_id = '4ee67b78577824e944379ac321783a497f174c83'))");
 		
 		echo 'hello world';
 		echo $output->row()->message;

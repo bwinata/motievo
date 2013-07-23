@@ -8,7 +8,6 @@ class Event extends CI_Controller
 	private $expected_field_names = array('event_title_name',
 										  'event_friend_name',
 										  'event_date_name',
-										  'event_time_name',
 										  'event_location_name',
 										  'event_meeting_point_name',
 										  'event_description_name');
@@ -16,7 +15,6 @@ class Event extends CI_Controller
 	private $field_id = array('event_title_name' => 'event_title',
 							  'event_friend_name' => 'event_friend',
 							  'event_date_name' => 'event_date',
-							  'event_time_name' => 'event_time',
 							  'event_location_name' => 'event_location',
 							  'event_meeting_point_name' => 'event_meeting_point',
 							  'event_description_name' => 'event_description');
@@ -92,7 +90,6 @@ class Event extends CI_Controller
 		}
 		else
 		{
-			//echo json_encode(array('response' => 'event_organised', 'result' => 'Event has been created'));
 			echo json_encode($this->Event_Content->create($event_details));
 		}
 	}
