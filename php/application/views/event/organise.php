@@ -47,28 +47,11 @@
 
 <script>
 	$(document).ready(function () {
-		generate_maps('map_container');
-		$('#event_date').datetimepicker({
-			timeFormat: 'hh:mm tt',
-			separator: ' @ ',		
-		});
+		var params = Array();
+		var link = '<?php echo site_url('friends/fetch_friends_list'); ?>';
+		params['u'] = '<?php echo $this->input->cookie('_u_'); ?>';
 		
-		$.ajax({
-			method	: 'GET',
-			url		: '<?php echo site_url('friends/fetch_friends_list'); ?>',
-			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
-			dataType: 'json',
-			success	: function(data) {
-				 $(function() {
-					var friendTags = data.result;
-					$( "#event_friend" ).autocomplete({
-						source: friendTags
-					});
-				});
-			},
-			error	: function(data) {
-			}
-		});
+		AJAX_load_organise_event (link, params);
 		
 		$('#event_preview_btn').click(function () {
 			var values = {};
@@ -139,7 +122,6 @@
 								break;
 							case 'event_organised':
 								window.location = '<?php echo site_url('event/all'); ?>';
-								//$('#event_created_notification').foundation('reveal', 'open');
 								break;
 							case 'event_error':
 								alert(data.result);
@@ -230,12 +212,6 @@
 			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
-	
-	<div id="event_created_notification" class="reveal-modal">
-      <h2>Awesome!</h2>
-      <p>Congratulations. You have successfully created an event.</p>
-      <a class="close-reveal-modal">&#215;</a>		
-	</div>	
 		
     <?php include('application/views/common/foundation_js_dep.php'); ?>		
 </body>

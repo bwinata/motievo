@@ -50,9 +50,11 @@ class Event_Content extends CI_Model
 		}	
 	}
 
-	public function fetch_events ()
+	/*public function fetch_events ()
 	{
-		$events = $this->db->query("SELECT * FROM events INNER JOIN registration ON events.friend_identifier = registration.user_identifier");
+		$events = $this->db->query("SELECT * FROM events 
+									INNER JOIN registration 
+									ON events.friend_identifier = registration.user_identifier");
 		if ($events->num_rows() > 0)
 		{
 			return 'Data available';
@@ -61,9 +63,57 @@ class Event_Content extends CI_Model
 		{
 			return array('response' => 'no_events', 'result' => 'No events are available at this time');
 		}
-		
-		
+	}*/
+	
+	public function fetch_events ($id)
+	{
+		$events = $this->db->query("SELECT events.title,
+										   registration.full_name,
+										   events.date,
+										   events.location,
+										   events.status
+									FROM events INNER JOIN registration 
+									ON events.friend_identifier = registration.user_identifier
+									WHERE events.user_identifier = '$id'");
+									
+		if ($events->num_rows () > 0)
+		{
+			return array('response' => 'events_avail', 'result' => $events->num_rows());
+			
+		}
+		else
+		{
+			return array('response' => 'no_events', 'result' => 'No events are available at this time');
+		}
+	}
+
+	public function check_new_event($id)
+	{
+		$available = $this->db->query("SELECT event_identifier FROM events WHERE (event_identifier = '$id')");
+		if ($available->num_rows() == 1)
+		{
+			/* Clear cookie once confirmed */
+			$this->input->set_cookie('_e_', ' ', 0, '.localhost', '/', '');
+			return array('response' => 'event_new', 'result' => '<h2>Awesome!</h2>
+      															 <p>Congratulations. You have successfully created an event.</p>');
+		}
+		/* else - Event is not new - Don't display message and don't return anything*/
 	}
 }
 
+/*
+			"<div class='container large-12 columns'>
+				<div class='large-7 columns' style='margin-left: -15px;'>
+					<span style='font-size: 12px;'><b>14 July 2013</b></span><br />
+					<h6><a href='#' style='color: black;'>We're going bushwalking!</a></h6>
+					<span class='subheader' style='margin-top: -10px; font-size: 14px;'><b>@ Lane Cove National Park</b></span><br />
+					<span style='font-size: 13px;'>with </span><span class='subheader'><a href='#'><b>Jessica Tan</b></a></span><br />				
+				</div>			
+				<div class='large-5 columns' style='margin-top: 20px; margin-left: 15px;'>
+					<input type='submit' class='tiny default button' style='font-size: 12px;' value='Send'>
+					<input type='submit' class='tiny default success button' style='font-size: 12px;' value='Edit'>
+					<input type='submit' class='tiny default alert button' style='font-size: 12px;' value='Delete''>
+				</div>				
+			</div>"
+*/
 ?>

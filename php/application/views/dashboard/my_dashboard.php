@@ -45,26 +45,13 @@
 	}
 
 	$(document).ready(function () {
-		$('#notification').show();
+		//$('#notification').show();
 		
-		$.ajax({
-			type	: 'GET',
-			url		: '<?php echo site_url('dashboard/get_user_info'); ?>',
-			data	: '&uid=' + '<?php echo $this->input->cookie('_u_'); ?>',
-			dataType: 'json',
-			success	: function(data) {
-				switch(data.response) {
-					case 'data_retrieved':
-						display_content(data.result);
-						break;
-					default:
-						break;
-				}
-			},
-			error	: function(data) {
-				alert('Something went wrong');
-			}
-		});
+		/* AJAX - Initiate events on page load */
+		var ajax_init_link = '<?php echo site_url('dashboard/get_user_info'); ?>';
+		var ajax_init_params = '<?php echo $this->input->cookie('_u_'); ?>';
+		
+		AJAX_load_my_dashboard(ajax_init_link, ajax_init_params);
 	});
 </script>
 
@@ -76,12 +63,13 @@
 	});
 </script>
 
+<!--
 <div id="notification" style="padding: 10px;">
 	<span style="font-size: 14px;"><b>Jessica Tan inviting you to a happening</b></span><br /><br />
 	<span style="font-size: 14px;"><b>Catchup Dinner</b></span><br /><br />
 	<span style="font-size: 12px;"><b>15 June 2013</b></span><br /><br />
 	<span style="font-size: 14px;"><b>8:00 PM</b></span>
-</div>
+</div>-->
 
 
 <link rel="stylesheet" href="<?php echo base_url() . 'css/scroll_top.css'; ?>" />

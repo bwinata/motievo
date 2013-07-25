@@ -99,6 +99,16 @@ class Event extends CI_Controller
 		echo json_encode($this->Event_Content->fetch_events($user_details));
 	}
 	
+	/* Perform functions upon page load */
+	public function init_event_page ()
+	{
+		$details = $this->Details->retrieve_get_details();
+		$events_init_items['event_new'] = $this->Event_Content->check_new_event($details['e_id']);
+		$events_init_items['events_all'] = $this->Event_Content->fetch_events($details['u_id']);
+		
+		echo json_encode($events_init_items);
+	}
+	
 	/* ============================================================== */
 	/* PRIVATE FUNCTIONS */
 	/* ============================================================== */

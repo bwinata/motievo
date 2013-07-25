@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<?php echo base_url() . 'css/fdn/foundation.css'; ?>" />
 <script src="<?php echo base_url() . 'js/vendor/custom.modernizr.js'; ?>"></script>
 <script src="<?php echo base_url() . 'js/highlight_error_fields.js'; ?>"></script>
+<script src="<?php echo base_url() . 'js/init_ajax_events.js'; ?>"></script>
 
 <style type="text/css">
 	a:hover {

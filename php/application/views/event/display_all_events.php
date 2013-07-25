@@ -45,41 +45,29 @@
 
 <script>
 	$(document).ready(function () {
+		
+		/* AJAX - Initiate Events on page load*/
+		var params = Array();
+		var link = '<?php echo site_url('event/init_event_page'); ?>';
+		params['e'] = '<?php echo $this->input->cookie('_e_'); ?>';
+		params['u'] = '<?php echo $this->input->cookie('_u_'); ?>';
+		
+		AJAX_load_my_events(link, params);
+		
+		/* User Event Handlers */
 		$('body').on('click', '.comments_expand_btn', function() {
 			document.getElementById('loader').style.display = 'none';
 			document.getElementById('comments_container').style.display = 'block';
 			$.ajax({
 				method	: 'GET',
 				url		: '<?php echo site_url('event/fetch_messages'); ?>',
-				type	: '$e_id=' + 'id',
+				data	: '&e_id=' + 'id',
 				dataType: 'json',
 				success	: function (data) {
 					
 				},
 				error	: function (data) {
 					
-				}
-			});
-		});
-		
-		$('#').click(function () {
-			$.ajax({
-				method	: 'POST',
-				url		: '<?php echo site_url('event/fetch_content'); ?>',
-				type	: '&uid=',
-				dataType: 'json',
-				success	: function(data) {
-					switch(data.response) {
-						case 'fetch_okay':
-							alert('fetch is okay');
-							document.getElementById('all_happenings').innerHTML += data.result;
-							break;
-						default:
-							break;
-					}
-				},
-				error	: function(data) {
-					alert('Something went wrong');
 				}
 			});
 		});
@@ -106,6 +94,7 @@
 		<div id="all_happenings" class="nav_left large-7 columns" style="margin-left: -15px;">
 			<div class="container large-12 columns">
 				<div class="large-7 columns" style="margin-left: -15px;">
+					<span style="font-size: 12px;"><b>14 July 2013</b></span><br />
 					<h6><a href='#' style="color: black;">We're going bushwalking!</a></h6>
 					<span class="subheader" style="margin-top: -10px; font-size: 14px;"><b>@ Lane Cove National Park</b></span><br />
 					<span style="font-size: 13px;">with </span><span class="subheader"><a href='#'><b>Jessica Tan</b></a></span><br />				
@@ -141,20 +130,10 @@
 			<?php include('application/views/common/upcoming_happenings.php'); ?>
 		</div>			
 	</div>
-	
-	<div id="myModal" class="reveal-modal"></div>	
-		
-	<script>
-	      document.write('<script src=' +
-	      ('__proto__' in {} ? '<?php echo base_url() . 'js/vendor/zepto'; ?>' : '<?php echo base_url() . 'js/vendor/jquery'; ?>') +
-	      '.js><\/script>')
-	</script>
-	
-    <script src="<?php echo base_url() . 'js/fdn/foundation.js'; ?>"></script>  
-    <script src="<?php echo base_url() . 'js/fdn/foundation.magellan.js'; ?>"></script>
-    <script src="<?php echo base_url() . 'js/fdn/foundation.reveal.js'; ?>"></script>
-	    
-    <script>$(document).foundation();</script>
+
+	<div id="event_created_notification" class="reveal-modal">
+      <a class="close-reveal-modal">&#215;</a>		
+	</div>	
 
 	<?php include('application/views/common/foundation_js_dep.php'); ?>
 
