@@ -1,7 +1,7 @@
 <?php
 
 class Event_Content extends CI_Model
-{
+{			
 	public function create ($event_details)
 	{
 		do
@@ -25,14 +25,16 @@ class Event_Content extends CI_Model
 												  date,
 												  location,
 												  meeting_point,
-												  details) VALUES ('$event_identifier',
+												  details,
+												  status) VALUES ('$event_identifier',
 												  				   '$event_details[uid]',
 												  				   '$event_details[event_title_name]',
 												  				   '$friend_id',
 												  				   '$format_datetime',
 												  				   '$event_details[event_location_name]',
 												  				   '$event_details[event_meeting_point_name]',
-												  				   '$event_details[event_description_name]')");
+												  				   '$event_details[event_description_name]',
+																   'draft')");
 			
 		}
 		else 
@@ -78,8 +80,11 @@ class Event_Content extends CI_Model
 									
 		if ($events->num_rows () > 0)
 		{
-			return array('response' => 'events_avail', 'result' => $events->num_rows());
-			
+			for ($i = 0; $i < $events->num_rows(); $i++)
+			{
+				$event_array[$i] = $this->get_html_event_content($events->row($i));
+			}
+			return array('response' => 'events_avail', 'result' => $event_array);
 		}
 		else
 		{
@@ -94,19 +99,27 @@ class Event_Content extends CI_Model
 		{
 			/* Clear cookie once confirmed */
 			$this->input->set_cookie('_e_', ' ', 0, '.localhost', '/', '');
-			return array('response' => 'event_new', 'result' => '<h2>Awesome!</h2>
-      															 <p>Congratulations. You have successfully created an event.</p>');
+			return array('response' => 'new', 'result' => '<h2>Awesome!</h2>
+      													   <p>Congratulations. You have successfully created an event.</p>');
 		}
-		/* else - Event is not new - Don't display message and don't return anything*/
+		else {
+			/* else - Event is not new - Don't display message and don't return anything*/
+			return array('response' => 'old', 'result' => '');
+		}
+		
 	}
-}
-
-/*
-			"<div class='container large-12 columns'>
+	
+	private function get_html_event_content ($content)
+	{
+		$title = $content->title;
+		$date = $content->date;
+		$location = $content->location;
+		
+		return "<div class='container large-12 columns'>
 				<div class='large-7 columns' style='margin-left: -15px;'>
-					<span style='font-size: 12px;'><b>14 July 2013</b></span><br />
-					<h6><a href='#' style='color: black;'>We're going bushwalking!</a></h6>
-					<span class='subheader' style='margin-top: -10px; font-size: 14px;'><b>@ Lane Cove National Park</b></span><br />
+					<span style='font-size: 12px;'><b>$date</b></span><br />
+					<h6><a href='#' style='color: black;'>$title</a></h6>
+					<span class='subheader' style='margin-top: -10px; font-size: 14px;'><b>@ $location</b></span><br />
 					<span style='font-size: 13px;'>with </span><span class='subheader'><a href='#'><b>Jessica Tan</b></a></span><br />				
 				</div>			
 				<div class='large-5 columns' style='margin-top: 20px; margin-left: 15px;'>
@@ -114,6 +127,8 @@ class Event_Content extends CI_Model
 					<input type='submit' class='tiny default success button' style='font-size: 12px;' value='Edit'>
 					<input type='submit' class='tiny default alert button' style='font-size: 12px;' value='Delete''>
 				</div>				
-			</div>"
-*/
+			</div>";		
+	}
+}
+
 ?>

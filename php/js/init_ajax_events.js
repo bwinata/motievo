@@ -35,10 +35,16 @@ function AJAX_load_my_events (link, params) {
 				  '&u_id=' + params['u'],
 		dataType: 'json',
 		success	: function (data) {
-			/*if (data.response == 'event_new') {
+			if (data.event_new.response == 'new') {
 				document.getElementById('event_created_notification').innerHTML += data.result;
-				$('#event_created_notification').foundation('reveal', 'open');	
-			}*/			
+				$('#event_created_notification').foundation('reveal', 'open');					
+			}
+			if (data.events_all.response == 'events_avail') {
+				document.getElementById('all_happenings').innerHTML += data.events_all.result[0];
+			}
+			else if (data.events_all.response == 'no_events') {
+				alert('There are no events');
+			}
 		},
 		error	: function (data) {
 			alert('Something went wrong');

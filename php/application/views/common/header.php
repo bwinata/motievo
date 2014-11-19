@@ -78,7 +78,7 @@
 <ul id="drop1" class="f-dropdown" data-dropdown-content>
   <li><a href="<?php echo site_url('dashboard/conversations'); ?>">Conversations</a></li>
   <li><a href="<?php echo site_url('friends/requests'); ?>">Requests</a></li>
-  <li><a href="#">Happenings</a></li>
+  <li><a href="<?php echo site_url('event/all'); ?>">Happenings</a></li>
   <li><a href="#">Friends</a></li>
   <li><a href="<?php echo site_url('settings/personal'); ?>">Settings</a></li>
 </ul>    
